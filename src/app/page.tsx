@@ -2,10 +2,10 @@ import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
 import { ProjectSection } from "@/components/site/ProjectSection";
-import { Capabilities } from "@/components/site/Capabilities";
-import { OtherProjects } from "@/components/site/OtherProjects";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import { Reveal } from "@/components/site/Reveal";
+import { Eyebrow } from "@/components/site/primitives";
 import { briquera, bandee } from "@/lib/content";
 import { briqueraTheme, bandeeTheme } from "@/lib/themes";
 
@@ -21,22 +21,44 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+
+        {/* Chapeau "Projets" — une liste qui pourra s'agrandir */}
+        <section
+          id="projets"
+          className="relative border-t border-line px-5 pt-24 pb-14 sm:px-8 sm:pt-32 sm:pb-16"
+        >
+          <div className="mx-auto max-w-6xl">
+            <Reveal>
+              <Eyebrow dot="var(--color-gold)" className="text-ivory-dim">
+                Projets
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="font-display mt-6 max-w-3xl text-3xl leading-[1.08] tracking-[-0.02em] sm:text-[2.7rem]">
+                Des produits que je conçois de A à Z, et que je mets en ligne.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-ivory-dim">
+                Deux aujourd&apos;hui — et la liste s&apos;agrandit.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
         <ProjectSection
           project={briquera}
           theme={briqueraTheme}
-          index="01"
           primaryScreen={<BriqueraHome />}
           secondaryScreen={<BriqueraPurchases />}
         />
         <ProjectSection
           project={bandee}
           theme={bandeeTheme}
-          index="02"
           primaryScreen={<BandeeHome />}
           secondaryScreen={<BandeeDates />}
         />
-        <Capabilities />
-        <OtherProjects />
+
         <Contact />
       </main>
       <Footer />

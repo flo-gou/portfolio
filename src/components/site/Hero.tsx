@@ -46,7 +46,7 @@ export function Hero() {
       >
         <motion.div variants={item}>
           <span className="eyebrow text-ivory-dim">
-            {profile.title} — {profile.location} · {bandee.year}
+            {profile.title} · {profile.location}
           </span>
         </motion.div>
 
@@ -58,7 +58,7 @@ export function Hero() {
           <span className="text-gold">En solo.</span>
         </motion.h1>
 
-        {/* Signature : l'horizon "deux mondes" */}
+        {/* Signature : l'horizon chromatique */}
         <motion.div variants={item} className="mt-10 max-w-4xl">
           <div className="h-2 w-full overflow-hidden rounded-full">
             <motion.div
@@ -67,10 +67,6 @@ export function Hero() {
               animate={{ scaleX: 1 }}
               transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             />
-          </div>
-          <div className="mt-3 flex items-center justify-between">
-            <span className="eyebrow text-ivory-faint">Deux produits</span>
-            <span className="eyebrow text-ivory-faint">Deux mondes</span>
           </div>
         </motion.div>
 

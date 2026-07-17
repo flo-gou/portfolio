@@ -44,7 +44,7 @@ export default function BriqueraPurchases() {
               Scanner un ticket
             </p>
             <p className="mt-0.5 text-[10px] font-normal leading-tight text-briq-plaster/60">
-              L&apos;OCR ajoute les articles tout seul
+              Les articles s&apos;ajoutent tout seuls
             </p>
           </div>
         </div>

@@ -54,11 +54,14 @@ export function Footer() {
 
       <div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-mono text-[0.72rem] text-ivory-faint">
-          © {new Date().getFullYear()} Florian Gouesse — Conçu & développé en solo.
+          © {new Date().getFullYear()} Florian Gouesse — Conçu en solo.
         </p>
-        <p className="font-mono text-[0.72rem] text-ivory-faint">
-          Bricolage Grotesque · IBM Plex Mono
-        </p>
+        <a
+          href="#top"
+          className="font-mono text-[0.72rem] text-ivory-faint transition-colors hover:text-ivory-dim"
+        >
+          Retour en haut ↑
+        </a>
       </div>
     </footer>
   );
