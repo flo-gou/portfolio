@@ -70,7 +70,7 @@ export function About() {
                 {profile.tools.map((t) => (
                   <li
                     key={t}
-                    className="rounded-full bg-gold/10 px-3.5 py-1.5 text-[0.82rem] font-medium text-gold-soft"
+                    className="rounded-full bg-gold/12 px-3.5 py-1.5 text-[0.82rem] font-medium text-gold"
                   >
                     {t}
                   </li>

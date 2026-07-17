@@ -31,10 +31,10 @@ export function Hero() {
       {/* halo chaud d'ambiance */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full opacity-25 blur-[80px]"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full opacity-30 blur-[90px]"
         style={{
           background:
-            "radial-gradient(circle, #f4a23c 0%, #e8703b 40%, transparent 70%)",
+            "radial-gradient(circle, #e6a95e 0%, #d98a3c 42%, transparent 70%)",
         }}
       />
 

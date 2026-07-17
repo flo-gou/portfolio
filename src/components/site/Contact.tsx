@@ -163,7 +163,7 @@ export function Contact() {
                 </Field>
 
                 {status === "error" ? (
-                  <p className="flex items-center gap-2 text-[0.85rem] text-[#ff8a6b]">
+                  <p className="flex items-center gap-2 text-[0.85rem] text-[#bb3a20]">
                     {error}{" "}
                     <a
                       className="inline-flex items-center gap-1 underline"
