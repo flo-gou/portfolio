@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Florian Gouesse
 
-## Getting Started
+Portfolio de **Florian Gouesse**, designer produit indépendant. Met en avant deux
+études de cas — **Briquera** (suivi de budget de rénovation) et **Bandee**
+(organisation d'événements de groupe) — chacune ré-habillée avec le vrai design
+system de l'app.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **motion** (animations), **lucide-react** (icônes)
+- Polices : Bricolage Grotesque · Instrument Sans · IBM Plex Mono (+ Outfit,
+  Archivo, Caveat pour les maquettes d'app)
+
+## Démarrer
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de production
+npm start        # sert le build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx          # polices + métadonnées SEO
+    page.tsx            # assemble les sections
+    globals.css         # design tokens (chrome + mondes Briquera/Bandee)
+    icon.svg            # favicon
+    api/contact/route.ts# réception du formulaire de contact
+  components/
+    site/               # Nav, Hero, About, ProjectSection, Capabilities,
+                        # OtherProjects, Contact, Footer, PhoneFrame, Reveal…
+    mockups/            # écrans d'app recréés en code (Briquera / Bandee)
+  lib/
+    content.ts          # tout le contenu (source unique)
+    themes.ts           # thèmes des deux études de cas
+public/brand/           # icônes & logos des apps
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Personnaliser
 
-## Learn More
+- **Contenu** : tout est dans `src/lib/content.ts` (textes, métriques, liens).
+- **Formulaire de contact** : voir `.env.example` pour activer l'envoi via
+  [Resend](https://resend.com). Sans clé, les messages sont acceptés mais non
+  livrés (repli mailto côté front).
+- **Vraies captures d'écran** : les maquettes sont dans `src/components/mockups/`.
+  Pour les remplacer par de vraies captures TestFlight/simulateur, échange le
+  contenu du `PhoneFrame` par une `<Image>` dans `ProjectSection`.
 
-To learn more about Next.js, take a look at the following resources:
+## Déployer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optimisé pour [Vercel](https://vercel.com) (déploiement direct du dépôt). Pense à
+définir les variables d'environnement du formulaire de contact si tu l'actives,
+et à ajuster `metadataBase` dans `src/app/layout.tsx` avec ton domaine réel.

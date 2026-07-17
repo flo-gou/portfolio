@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Design tokens — portfolio "chrome" + les deux mondes produit
+   Le portfolio a sa propre identité chaude & sombre (espresso/or).
+   Chaque étude de cas ré-habille la section avec les VRAIS tokens
+   de l'app : Briquera « Atelier », Bandee « Golden hour ».
+   ============================================================ */
+@theme {
+  /* Fonts (variables injectées par next/font) */
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-instrument);
+  --font-mono: var(--font-plex-mono);
+  --font-outfit: var(--font-outfit);
+  --font-archivo: var(--font-archivo);
+  --font-hand: var(--font-caveat);
+
+  /* ---- Portfolio chrome (sombre, chaud) ---- */
+  --color-espresso: #161311;
+  --color-espresso-2: #1e1915;
+  --color-espresso-3: #29221b;
+  --color-ivory: #f3ede1;
+  --color-ivory-dim: #a89e8d;
+  --color-ivory-faint: #6f665a;
+  --color-gold: #f4a23c;
+  --color-gold-soft: #ffbe63;
+  --color-line: rgba(243, 237, 225, 0.1);
+  --color-line-strong: rgba(243, 237, 225, 0.18);
+
+  /* ---- Briquera — "Atelier" ---- */
+  --color-briq-navy: #1b3a5b;
+  --color-briq-navy-deep: #12293f;
+  --color-briq-plaster: #ece3d2;
+  --color-briq-plaster-2: #f5efe1;
+  --color-briq-crayon: #d9531e;
+  --color-briq-crayon-2: #e8703b;
+  --color-briq-niveau: #1c8a6b;
+  --color-briq-niveau-soft: #cfede2;
+  --color-briq-ocre: #c4881a;
+  --color-briq-sanguine: #b2342a;
+  --color-briq-ink: #221f1b;
+
+  /* ---- Bandee — "Golden hour" ---- */
+  --color-band-cream: #fff7ed;
+  --color-band-cream-2: #f9ebda;
+  --color-band-coral: #ff6b4a;
+  --color-band-coral-2: #ff5a6e;
+  --color-band-amber: #ffb25e;
+  --color-band-amber-2: #ffc062;
+  --color-band-plum: #33203b;
+  --color-band-violet: #7c5cbf;
+  --color-band-green: #2e9e6b;
+  --color-band-red: #d64545;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  /* clip (et non hidden) : évite de transformer body en conteneur de scroll */
+  overflow-x: clip;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-espresso);
+  color: var(--color-ivory);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-espresso);
+}
+
+/* Focus visible cohérent sur fond sombre comme clair */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Typo utilitaires */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Eyebrow / label mono — signature "design token" */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Grain léger pour casser l'aplat des fonds sombres */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+/* Dégradé sunset réel de Bandee (rose horizon → corail → ambre) */
+.bandee-sunset {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-band-coral-2) 0%,
+    var(--color-band-coral) 48%,
+    var(--color-band-amber) 100%
+  );
+}
+
+/* Barre "spectre" du hero : les deux mondes côte à côte */
+.spectrum {
+  background-image: linear-gradient(
+    90deg,
+    #12293f 0%,
+    #1b3a5b 14%,
+    #d9531e 30%,
+    #e8703b 42%,
+    #f4a23c 54%,
+    #ffb25e 68%,
+    #ff6b4a 82%,
+    #7c5cbf 100%
+  );
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
