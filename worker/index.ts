@@ -1,24 +1,20 @@
 /**
- * Cloudflare Pages Function — réception du formulaire de contact.
- * Route : POST /api/contact
+ * Worker Cloudflare — sert le site statique (out/) via le binding ASSETS
+ * et gère l'endpoint POST /api/contact (formulaire de contact).
  *
- * Livraison via Resend si RESEND_API_KEY est défini (Cloudflare → Settings →
- * Environment variables). Sinon, la requête est acceptée sans livraison
- * (le front affiche la confirmation + propose un repli mailto).
- *
- * Variables d'env (Cloudflare Pages) :
- *   RESEND_API_KEY  — clé API Resend
- *   CONTACT_TO      — destinataire (défaut: flo.gouesse@gmail.com)
- *   CONTACT_FROM    — expéditeur vérifié (défaut: onboarding@resend.dev)
+ * Déploiement : Workers Static Assets (voir wrangler.jsonc).
+ * Variables d'env (Cloudflare → Settings → Variables) :
+ *   RESEND_API_KEY — clé Resend (sinon le message est accepté sans livraison)
+ *   CONTACT_TO     — destinataire (défaut: flo.gouesse@gmail.com)
+ *   CONTACT_FROM   — expéditeur vérifié (défaut: onboarding@resend.dev)
  */
 
-type Env = {
+interface Env {
+  ASSETS: { fetch: (request: Request) => Promise<Response> };
   RESEND_API_KEY?: string;
   CONTACT_TO?: string;
   CONTACT_FROM?: string;
-};
-
-type Ctx = { request: Request; env: Env };
+}
 
 function json(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data), {
@@ -31,10 +27,10 @@ function isEmail(v: unknown): v is string {
   return typeof v === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
 
-export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
+async function handleContact(request: Request, env: Env): Promise<Response> {
   let body: Record<string, unknown>;
   try {
-    body = await request.json();
+    body = (await request.json()) as Record<string, unknown>;
   } catch {
     return json({ error: "Requête invalide" }, 400);
   }
@@ -71,12 +67,23 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
         text: `De : ${name} <${email}>\n\n${message}`,
       }),
     });
-
-    if (!res.ok) {
-      return json({ error: "Envoi impossible" }, 502);
-    }
+    if (!res.ok) return json({ error: "Envoi impossible" }, 502);
     return json({ ok: true, delivered: true });
   } catch {
     return json({ error: "Erreur serveur" }, 500);
   }
 }
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+    if (url.pathname === "/api/contact") {
+      if (request.method !== "POST") {
+        return json({ error: "Méthode non autorisée" }, 405);
+      }
+      return handleContact(request, env);
+    }
+    // Tout le reste : le site statique.
+    return env.ASSETS.fetch(request);
+  },
+};
