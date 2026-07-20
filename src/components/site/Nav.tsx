@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { nav } from "@/lib/content";
+import { nav, profile } from "@/lib/content";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,10 +46,12 @@ export function Nav() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={profile.contacts.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-ivory px-4 py-2 text-[0.8rem] font-semibold text-espresso transition-transform hover:-translate-y-0.5"
           >
-            Me contacter
+            LinkedIn
           </a>
         </div>
 
@@ -92,11 +94,13 @@ export function Nav() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={profile.contacts.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-gold px-4 py-3 text-center font-semibold text-espresso"
             >
-              Me contacter
+              LinkedIn
             </a>
           </div>
         </div>

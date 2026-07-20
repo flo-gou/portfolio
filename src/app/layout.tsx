@@ -49,12 +49,13 @@ const siteUrl = "https://florian-gouesse.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Florian Gouesse — Designer produit & créateur d'apps",
+  title: "Florian Gouesse — Product Manager & Product Designer",
   description:
-    "Designer produit indépendant. Je conçois, designe et publie des applications mobiles entières en solo — de l'idée au store. Études de cas : Briquera et Bandee.",
+    "Product manager & product designer. Sur mon temps libre, je conçois des applications mobiles de bout en bout — de l'idée au store. Deux projets : Briquera et Bandee.",
   keywords: [
     "Florian Gouesse",
-    "designer produit",
+    "product manager",
+    "product management",
     "product designer",
     "portfolio",
     "Briquera",
@@ -65,18 +66,18 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Florian Gouesse" }],
   openGraph: {
-    title: "Florian Gouesse — Designer produit & créateur d'apps",
+    title: "Florian Gouesse — Product Manager & Product Designer",
     description:
-      "Je conçois et j'expédie des applications mobiles entières, en solo. Deux produits, deux mondes : Briquera & Bandee.",
+      "Des applications mobiles conçues de bout en bout, sur mon temps libre. Deux projets, deux mondes : Briquera & Bandee.",
     type: "website",
     locale: "fr_FR",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Florian Gouesse — Designer produit",
+    title: "Florian Gouesse — Product Manager & Product Designer",
     description:
-      "Je conçois et j'expédie des applications mobiles entières, en solo. Briquera & Bandee.",
+      "Des applications mobiles conçues de bout en bout, sur mon temps libre. Briquera & Bandee.",
   },
 };
 

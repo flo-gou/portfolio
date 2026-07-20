@@ -2,7 +2,6 @@ import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
 import { ProjectSection } from "@/components/site/ProjectSection";
-import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { Eyebrow } from "@/components/site/primitives";
@@ -35,12 +34,12 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="font-display mt-6 max-w-3xl text-3xl leading-[1.08] tracking-[-0.02em] sm:text-[2.7rem]">
-                Des produits que je conçois de A à Z, et que je mets en ligne.
+                Des projets nés de besoins concrets, menés jusqu&apos;au store.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-ivory-dim">
-                Deux aujourd&apos;hui — et la liste s&apos;agrandit.
+                Deux aujourd&apos;hui. D&apos;autres en préparation.
               </p>
             </Reveal>
           </div>
@@ -58,8 +57,6 @@ export default function Home() {
           primaryScreen={<BandeeHome />}
           secondaryScreen={<BandeeDates />}
         />
-
-        <Contact />
       </main>
       <Footer />
     </>

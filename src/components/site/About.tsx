@@ -17,8 +17,8 @@ export function About() {
 
         <Reveal delay={0.05}>
           <h2 className="font-display mt-6 max-w-3xl text-3xl leading-[1.08] tracking-[-0.02em] sm:text-[2.7rem]">
-            Je conçois des applications mobiles de A à Z — de la première idée
-            jusqu&apos;à leur mise en ligne.
+            Des applications mobiles menées de bout en bout, sur mon temps
+            libre — de l&apos;idée au store.
           </h2>
         </Reveal>
 

@@ -54,8 +54,8 @@ export function Hero() {
           variants={item}
           className="font-display mt-6 max-w-4xl text-[2.6rem] leading-[0.98] tracking-[-0.03em] sm:text-6xl lg:text-[5.2rem]"
         >
-          Je conçois et j'expédie des applications mobiles entières.{" "}
-          <span className="text-gold">En solo.</span>
+          Des applications mobiles,{" "}
+          <span className="text-gold">conçues de bout en bout.</span>
         </motion.h1>
 
         {/* Signature : l'horizon chromatique */}
@@ -89,10 +89,12 @@ export function Hero() {
             <ArrowDown size={17} />
           </a>
           <a
-            href="#contact"
+            href={profile.contacts.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-line-strong px-6 py-3.5 font-medium text-ivory transition-colors hover:bg-espresso-2"
           >
-            Travailler ensemble
+            LinkedIn
             <ArrowUpRight size={17} />
           </a>
         </motion.div>

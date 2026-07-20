@@ -4,45 +4,46 @@
 
 export const profile = {
   name: "Florian Gouesse",
-  title: "Designer produit & créateur d'apps",
+  title: "Product Manager & Product Designer",
   location: "France",
-  tagline: "Je conçois et je mets en ligne des applications mobiles entières. En solo.",
+  tagline: "Des applications mobiles conçues de bout en bout, sur mon temps libre.",
   intro:
-    "Designer orienté produit. Je pars d'une idée et je vais jusqu'au store — je pense d'abord à la personne qui utilise l'app, je soigne autant l'identité visuelle que les mots, et je m'occupe de tout : le concept, le design, la mise en ligne.",
+    "Product manager d'abord, product designer ensuite. Sur mon temps libre, je conçois des applications mobiles de bout en bout : cadrage, priorisation, design, mise en ligne. Des projets nés de besoins concrets, menés jusqu'au store.",
   method: [
     {
       k: "01",
-      label: "Cadrer d'abord",
-      body: "Chaque produit commence par des questions : à qui il sert, ce qu'il résout, ce qu'on garde et ce qu'on coupe. Rien ne démarre avant que ce soit clair.",
+      label: "Cadrer et prioriser",
+      body: "Chaque projet part d'un besoin réel. Je définis le problème, ce qu'on garde et ce qu'on écarte.",
     },
     {
       k: "02",
-      label: "Le parcours avant tout",
-      body: "Je raisonne du point de vue de la personne — de la première ouverture au moment où l'app devient un réflexe. L'expérience passe avant les fonctionnalités.",
+      label: "Penser le parcours",
+      body: "Je raisonne du point de vue de l'utilisateur, de la première ouverture à l'usage quotidien.",
     },
     {
       k: "03",
       label: "Une identité par produit",
-      body: "Chaque app reçoit son monde : couleurs, typographie, ton, jusqu'au moindre écran. La cohérence n'est pas négociable.",
+      body: "Chaque application a son univers : couleurs, typographie, ton, jusqu'au moindre écran.",
     },
     {
       k: "04",
-      label: "Mettre en ligne",
-      body: "Un produit qui n'est pas accessible n'existe pas. Je vais jusqu'au bout : les stores, un site, un nom de domaine.",
+      label: "Livrer",
+      body: "Un produit se juge en ligne. Je vais jusqu'au store : une application installable et aboutie.",
     },
   ],
   skills: [
-    "Design produit",
+    "Product management",
+    "Priorisation & roadmap",
+    "Product design",
     "UX / UI",
     "Direction artistique & identité",
-    "Copywriting & voix de marque",
     "Design systems",
-    "Priorisation produit",
+    "Copywriting & voix de marque",
     "Mise en ligne (stores)",
   ],
   tools: ["Claude Code", "Supabase", "Cloudflare"],
   toolsNote:
-    "Je conçois mes apps et je les mets en ligne moi-même, en m'appuyant sur des outils modernes comme Claude Code, Supabase et Cloudflare.",
+    "Je conçois et mets en ligne mes applications moi-même, avec Claude Code, Supabase et Cloudflare. Chaque projet est l'occasion d'apprendre.",
   contacts: {
     email: "flo.gouesse@gmail.com",
     linkedin: "https://www.linkedin.com/in/floriangouesse" as string,
@@ -132,5 +133,4 @@ export const projects = [briquera, bandee] as const;
 export const nav = [
   { href: "#apropos", label: "À propos" },
   { href: "#projets", label: "Projets" },
-  { href: "#contact", label: "Contact" },
 ] as const;

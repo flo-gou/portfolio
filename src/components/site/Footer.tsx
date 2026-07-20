@@ -15,8 +15,8 @@ export function Footer() {
             <span className="font-display text-[0.95rem]">Florian Gouesse</span>
           </div>
           <p className="mt-4 text-[0.85rem] leading-relaxed text-ivory-faint">
-            {profile.title}. Je conçois et j'expédie des applications mobiles
-            entières, en solo.
+            {profile.title}. Des applications mobiles conçues de bout en bout,
+            sur mon temps libre.
           </p>
         </div>
 
@@ -44,17 +44,27 @@ export function Footer() {
             join-bandee.com
           </a>
           <a
-            href="#contact"
+            href={profile.contacts.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[0.9rem] text-ivory-dim transition-colors hover:text-ivory"
           >
-            Me contacter
+            LinkedIn
+          </a>
+          <a
+            href={profile.contacts.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[0.9rem] text-ivory-dim transition-colors hover:text-ivory"
+          >
+            GitHub
           </a>
         </div>
       </div>
 
       <div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-mono text-[0.72rem] text-ivory-faint">
-          © {new Date().getFullYear()} Florian Gouesse — Conçu en solo.
+          © {new Date().getFullYear()} Florian Gouesse — Product management & design.
         </p>
         <a
           href="#top"
