@@ -10,15 +10,16 @@ import { briqueraTheme, bandeeTheme } from "@/lib/themes";
 
 import Image from "next/image";
 
-/** Vraie capture d'écran de l'app, rendue plein cadre dans le téléphone. */
+/** Vraie capture d'écran de l'app, à sa taille naturelle (jamais croppée). */
 function Shot({ src, alt }: { src: string; alt: string }) {
   return (
     <Image
       src={src}
       alt={alt}
-      fill
+      width={1170}
+      height={2532}
       sizes="256px"
-      className="object-cover object-top"
+      className="block h-auto w-full"
       priority
     />
   );

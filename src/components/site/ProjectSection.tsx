@@ -165,7 +165,7 @@ export function ProjectSection({
                 <PhoneFrame
                   screenBg={theme.phoneScreenBg}
                   chrome={theme.phoneChrome}
-                  hideStatusBar={capturedScreens}
+                  captured={capturedScreens}
                 >
                   {secondaryScreen}
                 </PhoneFrame>
@@ -174,7 +174,7 @@ export function ProjectSection({
                 <PhoneFrame
                   screenBg={theme.phoneScreenBg}
                   chrome={theme.phoneChrome}
-                  hideStatusBar={capturedScreens}
+                  captured={capturedScreens}
                 >
                   {primaryScreen}
                 </PhoneFrame>
