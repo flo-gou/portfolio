@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { nav, profile } from "@/lib/content";
 
+/** Navigation minimale : nom + rôle, deux ancres, un lien. Aucun logo, aucun
+    bouton plein — la retenue fait partie du message. */
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -22,16 +24,13 @@ export function Nav() {
           : "border-b border-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
-        <a href="#top" className="group flex items-center gap-2.5">
-          <span
-            aria-hidden
-            className="grid h-7 w-7 place-items-center rounded-md bg-gold font-display text-sm text-espresso"
-          >
-            F
-          </span>
-          <span className="font-display text-[0.95rem] tracking-tight">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+        <a href="#top" className="flex items-baseline gap-2.5">
+          <span className="font-display text-[0.98rem] tracking-tight">
             Florian Gouesse
+          </span>
+          <span className="hidden font-mono text-[0.68rem] uppercase tracking-wider text-ivory-faint sm:inline">
+            {profile.role}
           </span>
         </a>
 
@@ -49,9 +48,9 @@ export function Nav() {
             href={profile.contacts.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-ivory px-4 py-2 text-[0.8rem] font-semibold text-espresso transition-transform hover:-translate-y-0.5"
+            className="eyebrow text-ivory-dim transition-colors hover:text-ivory"
           >
-            LinkedIn
+            LinkedIn ↗
           </a>
         </div>
 
@@ -62,21 +61,9 @@ export function Nav() {
           onClick={() => setOpen((v) => !v)}
           className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
         >
-          <span
-            className={`h-0.5 w-5 bg-ivory transition-transform ${
-              open ? "translate-y-2 rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`h-0.5 w-5 bg-ivory transition-opacity ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`h-0.5 w-5 bg-ivory transition-transform ${
-              open ? "-translate-y-2 -rotate-45" : ""
-            }`}
-          />
+          <span className={`h-0.5 w-5 bg-ivory transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`h-0.5 w-5 bg-ivory transition-opacity ${open ? "opacity-0" : ""}`} />
+          <span className={`h-0.5 w-5 bg-ivory transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
         </button>
       </nav>
 
@@ -98,9 +85,9 @@ export function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-gold px-4 py-3 text-center font-semibold text-espresso"
+              className="rounded-lg px-2 py-3 text-lg font-medium text-ivory-dim hover:bg-espresso-2 hover:text-ivory"
             >
-              LinkedIn
+              LinkedIn ↗
             </a>
           </div>
         </div>

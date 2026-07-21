@@ -1,49 +1,28 @@
 /* Contenu du portfolio — source unique de vérité.
-   Volontairement non technique : on parle produit, design et impact,
-   jamais code, stack ou chiffres d'implémentation. */
+   Refonte « Garder / Écarter » : synthétique, orientée CPO / Head of Product,
+   le design en second métier. On parle produit — cadrer, arbitrer, livrer —
+   jamais jargon, chiffres d'implémentation ni survente. */
 
 export const profile = {
   name: "Florian Gouesse",
-  title: "Product Manager & Product Designer",
+  role: "Product Manager",
   location: "France",
-  tagline: "Des applications mobiles conçues de bout en bout, sur mon temps libre.",
-  intro:
-    "Product manager d'abord, product designer ensuite. Sur mon temps libre, je conçois des applications mobiles de bout en bout : cadrage, priorisation, design, mise en ligne. Des projets nés de besoins concrets, menés jusqu'au store.",
-  method: [
-    {
-      k: "01",
-      label: "Cadrer et prioriser",
-      body: "Chaque projet part d'un besoin réel. Je définis le problème, ce qu'on garde et ce qu'on écarte.",
-    },
-    {
-      k: "02",
-      label: "Penser le parcours",
-      body: "Je raisonne du point de vue de l'utilisateur, de la première ouverture à l'usage quotidien.",
-    },
-    {
-      k: "03",
-      label: "Une identité par produit",
-      body: "Chaque application a son univers : couleurs, typographie, ton, jusqu'au moindre écran.",
-    },
-    {
-      k: "04",
-      label: "Livrer",
-      body: "Un produit se juge en ligne. Je vais jusqu'au store : une application installable et aboutie.",
-    },
-  ],
-  skills: [
-    "Product management",
-    "Priorisation & roadmap",
-    "Product design",
-    "UX / UI",
-    "Direction artistique & identité",
-    "Design systems",
-    "Copywriting & voix de marque",
-    "Mise en ligne (stores)",
-  ],
-  tools: ["Claude Code", "Supabase", "Cloudflare"],
-  toolsNote:
-    "Je conçois et mets en ligne mes applications moi-même, avec Claude Code, Supabase et Cloudflare. Chaque projet est l'occasion d'apprendre.",
+  // Manifeste (ex-hero)
+  headline: ["Cadrer, arbitrer,", "livrer."], // l'accent miel porte sur le 2e fragment
+  subhead:
+    "Product manager, product designer ensuite. Sur mon temps libre, je conçois des applications mobiles pour des besoins concrets — et je les mène jusqu'en ligne. Deux à ouvrir aujourd'hui.",
+  bio: "Je pars d'un problème réel, je tranche ce que le produit fait et surtout ce qu'il ne fait pas. Le design est mon second métier : il rend chaque arbitrage visible et tenu, du premier écran au dernier.",
+  // Ancrage de séniorité — le point n°1 pour un CPO. À renseigner avec le vrai
+  // contexte de Florian (années · rôle · secteur) ; null = ligne masquée.
+  anchor: null as string | null,
+  // Liaison — remplace toute la section « À propos »
+  liaison:
+    "Le même métier à chaque projet : décider. Deux besoins réels, deux produits menés jusqu'en ligne.",
+  // Clôture
+  closing:
+    "Je cherche un poste produit. La meilleure façon de me juger : ouvrir les apps.",
+  colophon:
+    "Ce site aussi — conçu, écrit et mis en ligne par mes soins. « Lin & miel », 2026.",
   contacts: {
     email: "flo.gouesse@gmail.com",
     linkedin: "https://www.linkedin.com/in/floriangouesse" as string,
@@ -52,85 +31,97 @@ export const profile = {
   },
 } as const;
 
-export type ProjectFeature = { title: string; body: string };
+export type Shot = { src: string; alt: string; caption: string };
 
-export const briquera = {
+export type Project = {
+  id: string;
+  index: string;
+  name: string;
+  world: string;
+  category: string;
+  status: string;
+  statusHref?: string;
+  promise: string;
+  problem: string;
+  /** La décision produit clé — le bloc sobre qui remplace le dispositif barré. */
+  decision: string;
+  /** Ce qui a été volontairement écarté (sobre, non barré) — signal de priorisation. */
+  ecarte: string;
+  /** Beat « ce que j'ai appris » — un vrai fait, ou null (masqué) tant qu'il n'est pas confirmé. */
+  learned: string | null;
+  role: string;
+  link?: { label: string; url: string };
+  shots: Shot[];
+  icon: string;
+};
+
+export const briquera: Project = {
   id: "briquera",
+  index: "01",
   name: "Briquera",
   world: "Atelier",
-  tagline: "Tes chantiers, sans mauvaise surprise.",
   category: "App mobile · Budget de rénovation",
   status: "Prêt pour l'App Store",
-  summary:
-    "Briquera aide ceux qui rénovent à piloter le budget de leur chantier, du premier devis à la dernière facture, sans tableur. On crée ses pièces et ses postes, on ajoute ses achats, et on voit en temps réel où part chaque euro.",
+  promise: "Tes chantiers, sans mauvaise surprise.",
   problem:
-    "Le budget d'une rénovation s'éparpille entre devis, tickets et factures. On finit par bricoler un tableur, puis on abandonne le suivi — et on découvre les dépassements trop tard.",
-  approach:
-    "Un suivi clair, pièce par pièce et poste par poste, où un achat prévu devient une dépense réelle en un geste. On dédramatise l'argent, sans jamais culpabiliser.",
-  features: [
+    "Le budget d'une rénovation s'éparpille entre devis, tickets et factures. On bricole un tableur, on lâche le suivi, on découvre les dépassements trop tard.",
+  decision:
+    "Le vrai frein, c'est la saisie. On scanne le ticket, la dépense s'ajoute seule — moins d'effort que le tableur qu'on remplace. C'est ce qui fait qu'on continue.",
+  ecarte:
+    "La gestion de chantier complète, la compta, les devis à signer. Une seule question bien résolue, pas un logiciel de plus.",
+  learned: null,
+  role: "Cadrage, produit, design « Atelier », mise en ligne — de l'idée à la fiche App Store.",
+  shots: [
     {
-      title: "Le budget en temps réel",
-      body: "Où part chaque euro, pièce par pièce et poste par poste — d'un coup d'œil, sans jamais ouvrir un tableur.",
+      src: "/mockups/briquera/stats.png",
+      alt: "Répartition du budget de Briquera par pièce",
+      caption: "Où part l'argent, pièce par pièce — et la date où le budget sera atteint.",
     },
     {
-      title: "Le scan de tickets",
-      body: "On photographie un ticket de caisse, et les articles s'ajoutent tout seuls au budget.",
+      src: "/mockups/briquera/accueil.png",
+      alt: "Accueil du chantier dans Briquera",
+      caption: "Le chantier en un écran : engagé, restant, priorités.",
     },
-    {
-      title: "Tout au même endroit",
-      body: "Achats, devis, factures, planning et partage à plusieurs : le chantier entier dans une seule app.",
-    },
-  ] as ProjectFeature[],
-  role: [
-    "L'idée, le concept produit et le parcours, de bout en bout.",
-    "L'identité visuelle « Atelier » et tous les écrans de l'app.",
-    "La marque, le ton, la fiche App Store — et la mise en ligne.",
   ],
-  links: [] as { label: string; url: string }[],
   icon: "/brand/briquera-icon.png",
-} as const;
+};
 
-export const bandee = {
+export const bandee: Project = {
   id: "bandee",
+  index: "02",
   name: "Bandee",
   world: "Golden hour",
-  tagline: "Tes plans entre amis, du premier oui au dernier compte.",
-  category: "App mobile · Organisation d'événements",
-  status: "Bêta · Site en ligne",
-  summary:
-    "Bandee centralise toute l'organisation d'un week-end ou d'un voyage entre amis. Elle remplace le patchwork de sondages, de tableurs de comptes et de fils de discussion par un seul endroit qui suit l'événement, du premier « oui » au dernier compte réglé.",
+  category: "App mobile · Organisation d'événements entre amis",
+  status: "Bêta · join-bandee.com",
+  statusHref: "https://join-bandee.com",
+  promise: "Du premier oui au dernier compte réglé.",
   problem:
-    "Organiser un séjour à plusieurs, c'est jongler entre un sondage pour la date, un outil pour les dépenses, un fil de messages et des notes éparses. Rien n'est relié, personne ne sait « où on en est ».",
-  approach:
-    "Un parcours unique guidé par les étapes de l'événement : décider la date, préparer le programme, vivre le jour J, régler les comptes. Pas de compte à créer : un prénom, un code, et c'est parti.",
-  features: [
+    "Organiser un week-end à plusieurs, c'est jongler entre un sondage de dates, un tableur de comptes et un fil de messages. Rien n'est relié, personne ne sait où on en est.",
+  decision:
+    "Pas de compte à créer : un prénom, un code, on entre. Enlever la friction, c'était ça, la fonctionnalité.",
+  ecarte:
+    "Le compte à créer, le fil social, la réservation — tout ce qui fait qu'un ami sur deux n'installe jamais l'app.",
+  learned: null,
+  role: "Concept, parcours, priorités, direction artistique « Golden hour », voix de marque — site et bêta en ligne.",
+  link: { label: "Voir le site", url: "https://join-bandee.com" },
+  shots: [
     {
-      title: "Choisir la date ensemble",
-      body: "Chacun dit quand il peut, la meilleure date ressort toute seule — fini les échanges de messages sans fin.",
+      src: "/mockups/bandee/dates.png",
+      alt: "Sondage de dates dans Bandee",
+      caption: "On cale la date : chacun coche ses dispos, la meilleure ressort.",
     },
     {
-      title: "Un programme partagé",
-      body: "Le séjour se construit à plusieurs : activités, restos, trajets, réunis sur une même timeline.",
+      src: "/mockups/bandee/event-hub.png",
+      alt: "Accueil d'un événement Bandee",
+      caption: "L'événement en un endroit : vote, budget, programme, comptes.",
     },
-    {
-      title: "Les comptes réglés sans prise de tête",
-      body: "Chacun note ses dépenses, l'app dit qui doit combien à qui. Zéro tableur, zéro tension à la fin.",
-    },
-  ] as ProjectFeature[],
-  role: [
-    "Le concept produit, le parcours et les priorités.",
-    "La direction artistique « Golden hour », l'identité et tous les écrans.",
-    "Le copywriting, la voix de marque, et la mise en ligne (site + bêta).",
   ],
-  links: [
-    { label: "Voir le site", url: "https://join-bandee.com" },
-  ] as { label: string; url: string }[],
   icon: "/brand/bandee-icon.png",
-} as const;
+};
 
 export const projects = [briquera, bandee] as const;
 
 export const nav = [
-  { href: "#apropos", label: "À propos" },
   { href: "#projets", label: "Projets" },
+  { href: "#contact", label: "Contact" },
 ] as const;

@@ -1,77 +1,55 @@
-import { nav, profile } from "@/lib/content";
+import { profile } from "@/lib/content";
 
+/** Clôture : une intention claire (poste produit), les liens sobres, un colophon
+    qui prouve le ship sans le sur-jouer. */
 export function Footer() {
   return (
-    <footer className="border-t border-line px-5 py-14 sm:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
-        <div className="max-w-xs">
-          <div className="flex items-center gap-2.5">
-            <span
-              aria-hidden
-              className="grid h-7 w-7 place-items-center rounded-md bg-gold font-display text-sm text-espresso"
-            >
-              F
-            </span>
-            <span className="font-display text-[0.95rem]">Florian Gouesse</span>
-          </div>
-          <p className="mt-4 text-[0.85rem] leading-relaxed text-ivory-faint">
-            {profile.title}. Des applications mobiles conçues de bout en bout,
-            sur mon temps libre.
-          </p>
-        </div>
+    <footer
+      id="contact"
+      className="border-t border-line px-5 py-20 sm:px-8 sm:py-24"
+    >
+      <div className="mx-auto max-w-6xl">
+        <p className="eyebrow text-ivory-faint">Contact</p>
+        <p className="font-display mt-5 max-w-2xl text-2xl leading-snug tracking-[-0.01em] sm:text-3xl">
+          {profile.closing}
+        </p>
 
-        <nav className="flex flex-col gap-2.5">
-          <span className="eyebrow mb-1 text-ivory-faint">Naviguer</span>
-          {nav.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="text-[0.9rem] text-ivory-dim transition-colors hover:text-ivory"
-            >
-              {n.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex flex-col gap-2.5">
-          <span className="eyebrow mb-1 text-ivory-faint">Ailleurs</span>
+        <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.95rem]">
           <a
-            href={profile.contacts.bandee}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[0.9rem] text-ivory-dim transition-colors hover:text-ivory"
+            href={`mailto:${profile.contacts.email}`}
+            className="font-medium text-ivory transition-colors hover:text-gold"
           >
-            join-bandee.com
+            {profile.contacts.email}
           </a>
           <a
             href={profile.contacts.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[0.9rem] text-ivory-dim transition-colors hover:text-ivory"
+            className="text-ivory-dim transition-colors hover:text-ivory"
           >
-            LinkedIn
+            LinkedIn ↗
           </a>
           <a
             href={profile.contacts.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[0.9rem] text-ivory-dim transition-colors hover:text-ivory"
+            className="text-ivory-dim transition-colors hover:text-ivory"
           >
-            GitHub
+            GitHub ↗
           </a>
         </div>
-      </div>
 
-      <div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-mono text-[0.72rem] text-ivory-faint">
-          © {new Date().getFullYear()} Florian Gouesse — Product management & design.
-        </p>
-        <a
-          href="#top"
-          className="font-mono text-[0.72rem] text-ivory-faint transition-colors hover:text-ivory-dim"
-        >
-          Retour en haut ↑
-        </a>
+        <div className="mt-16 flex flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-lg font-mono text-[0.72rem] leading-relaxed text-ivory-faint">
+            {profile.colophon}
+          </p>
+          <a
+            href="#top"
+            className="font-mono text-[0.72rem] text-ivory-faint transition-colors hover:text-ivory-dim"
+          >
+            Retour en haut ↑
+          </a>
+        </div>
       </div>
     </footer>
   );
