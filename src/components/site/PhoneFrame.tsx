@@ -9,6 +9,9 @@ type PhoneFrameProps = {
   className?: string;
   style?: CSSProperties;
   time?: string;
+  /** Masque la status bar recréée (heure/batterie). À activer quand l'écran est
+      une VRAIE capture d'app, qui n'a pas de status bar iOS à recouvrir. */
+  hideStatusBar?: boolean;
 };
 
 /** Cadre de téléphone réaliste et léger. Le contenu est un écran d'app recréé. */
@@ -19,6 +22,7 @@ export function PhoneFrame({
   className = "",
   style,
   time = "9:41",
+  hideStatusBar = false,
 }: PhoneFrameProps) {
   return (
     <div
@@ -31,6 +35,7 @@ export function PhoneFrame({
         style={{ background: screenBg }}
       >
         {/* Status bar */}
+        {!hideStatusBar ? (
         <div
           className="absolute inset-x-0 top-0 z-20 flex h-[6.5%] items-center justify-between px-6 text-[0.62rem] font-semibold"
           style={{ color: chrome }}
@@ -67,9 +72,13 @@ export function PhoneFrame({
             </svg>
           </span>
         </div>
+        ) : null}
 
-        {/* Dynamic island */}
-        <div className="absolute left-1/2 top-[1.6%] z-30 h-[3.4%] w-[32%] -translate-x-1/2 rounded-full bg-[#0c0b0a]" />
+        {/* Dynamic island — masqué pour les vraies captures (leur contenu monte
+            jusqu'en haut, l'îlot chevaucherait le titre de l'app). */}
+        {!hideStatusBar ? (
+          <div className="absolute left-1/2 top-[1.6%] z-30 h-[3.4%] w-[32%] -translate-x-1/2 rounded-full bg-[#0c0b0a]" />
+        ) : null}
 
         {/* Contenu de l'écran */}
         <div className="absolute inset-0">{children}</div>

@@ -41,11 +41,14 @@ export function ProjectSection({
   theme,
   primaryScreen,
   secondaryScreen,
+  capturedScreens = false,
 }: {
   project: Project;
   theme: ProjectTheme;
   primaryScreen: ReactNode;
   secondaryScreen: ReactNode;
+  /** true quand les écrans sont de vraies captures d'app (pas de status bar recréée). */
+  capturedScreens?: boolean;
 }) {
   return (
     <section
@@ -162,6 +165,7 @@ export function ProjectSection({
                 <PhoneFrame
                   screenBg={theme.phoneScreenBg}
                   chrome={theme.phoneChrome}
+                  hideStatusBar={capturedScreens}
                 >
                   {secondaryScreen}
                 </PhoneFrame>
@@ -170,6 +174,7 @@ export function ProjectSection({
                 <PhoneFrame
                   screenBg={theme.phoneScreenBg}
                   chrome={theme.phoneChrome}
+                  hideStatusBar={capturedScreens}
                 >
                   {primaryScreen}
                 </PhoneFrame>

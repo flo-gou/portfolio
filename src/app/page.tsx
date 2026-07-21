@@ -8,10 +8,21 @@ import { Eyebrow } from "@/components/site/primitives";
 import { briquera, bandee } from "@/lib/content";
 import { briqueraTheme, bandeeTheme } from "@/lib/themes";
 
-import BriqueraHome from "@/components/mockups/BriqueraHome";
-import BriqueraPurchases from "@/components/mockups/BriqueraPurchases";
-import BandeeHome from "@/components/mockups/BandeeHome";
-import BandeeDates from "@/components/mockups/BandeeDates";
+import Image from "next/image";
+
+/** Vraie capture d'écran de l'app, rendue plein cadre dans le téléphone. */
+function Shot({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes="256px"
+      className="object-cover object-top"
+      priority
+    />
+  );
+}
 
 export default function Home() {
   return (
@@ -48,14 +59,24 @@ export default function Home() {
         <ProjectSection
           project={briquera}
           theme={briqueraTheme}
-          primaryScreen={<BriqueraHome />}
-          secondaryScreen={<BriqueraPurchases />}
+          capturedScreens
+          primaryScreen={
+            <Shot src="/mockups/briquera/accueil.png" alt="Écran d'accueil de Briquera" />
+          }
+          secondaryScreen={
+            <Shot src="/mockups/briquera/stats.png" alt="Statistiques de budget de Briquera" />
+          }
         />
         <ProjectSection
           project={bandee}
           theme={bandeeTheme}
-          primaryScreen={<BandeeHome />}
-          secondaryScreen={<BandeeDates />}
+          capturedScreens
+          primaryScreen={
+            <Shot src="/mockups/bandee/event-hub.png" alt="Accueil d'un événement Bandee" />
+          }
+          secondaryScreen={
+            <Shot src="/mockups/bandee/dates.png" alt="Sondage de dates de Bandee" />
+          }
         />
       </main>
       <Footer />
