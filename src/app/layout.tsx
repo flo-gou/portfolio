@@ -49,9 +49,9 @@ const siteUrl = "https://florian-gouesse.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Florian Gouesse — Product Manager",
+  title: "Florian Gouesse — Senior Product Manager",
   description:
-    "Product manager : cadrer, arbitrer, livrer. Sur mon temps libre, je conçois des applications mobiles pour des besoins concrets et je les mène jusqu'en ligne. Deux à ouvrir : Briquera et Bandee.",
+    "Senior product manager, 7 ans en B2B et SaaS. Cadrer, arbitrer, livrer. À côté, je conçois et j'expédie des apps mobiles grand public — deux à ouvrir : Briquera et Bandee.",
   keywords: [
     "Florian Gouesse",
     "product manager",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Florian Gouesse" }],
   openGraph: {
-    title: "Florian Gouesse — Product Manager",
+    title: "Florian Gouesse — Senior Product Manager",
     description:
       "Cadrer, arbitrer, livrer. Deux applications mobiles menées jusqu'en ligne : Briquera & Bandee.",
     type: "website",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Florian Gouesse — Product Manager",
+    title: "Florian Gouesse — Senior Product Manager",
     description:
       "Cadrer, arbitrer, livrer. Briquera & Bandee, menées jusqu'en ligne.",
   },

@@ -5,22 +5,21 @@
 
 export const profile = {
   name: "Florian Gouesse",
-  role: "Product Manager",
-  location: "France",
+  role: "Senior Product Manager",
+  location: "Île-de-France",
   // Manifeste (ex-hero)
   headline: ["Cadrer, arbitrer,", "livrer."], // l'accent miel porte sur le 2e fragment
   subhead:
-    "Product manager, product designer ensuite. Sur mon temps libre, je conçois des applications mobiles pour des besoins concrets — et je les mène jusqu'en ligne. Deux à ouvrir aujourd'hui.",
-  bio: "Je pars d'un problème réel, je tranche ce que le produit fait et surtout ce qu'il ne fait pas. Le design est mon second métier : il rend chaque arbitrage visible et tenu, du premier écran au dernier.",
-  // Ancrage de séniorité — le point n°1 pour un CPO. À renseigner avec le vrai
-  // contexte de Florian (années · rôle · secteur) ; null = ligne masquée.
-  anchor: null as string | null,
+    "Senior product manager, 7 ans à transformer des problèmes clients en produits B2B mesurables. À côté, je conçois et j'expédie des apps mobiles grand public — de l'idée au store. Deux à ouvrir aujourd'hui.",
+  bio: "Je pars d'un problème réel, je tranche ce que le produit fait et surtout ce qu'il ne fait pas — puis je le mène jusqu'en ligne. Le design est mon second métier : il rend chaque arbitrage visible et tenu.",
+  // Ancrage de séniorité (le point n°1 pour un CPO) — entreprises repères du CV.
+  anchor: "Carglass · Leroy Merlin · Padam · Safran",
   // Liaison — remplace toute la section « À propos »
   liaison:
     "Le même métier à chaque projet : décider. Deux besoins réels, deux produits menés jusqu'en ligne.",
   // Clôture
   closing:
-    "Je cherche un poste produit. La meilleure façon de me juger : ouvrir les apps.",
+    "Ouvert aux opportunités produit. La meilleure façon de me juger : ouvrir les apps.",
   colophon:
     "Ce site aussi — conçu, écrit et mis en ligne par mes soins. « Lin & miel », 2026.",
   contacts: {
@@ -69,7 +68,8 @@ export const briquera: Project = {
     "Le vrai frein, c'est la saisie. On scanne le ticket, la dépense s'ajoute seule — moins d'effort que le tableur qu'on remplace. C'est ce qui fait qu'on continue.",
   ecarte:
     "La gestion de chantier complète, la compta, les devis à signer. Une seule question bien résolue, pas un logiciel de plus.",
-  learned: null,
+  learned:
+    "En revoyant le produit, une alerte de dépassement pointait vers un budget global introuvable et non modifiable. Je l'ai retiré : le budget se calcule à partir des pièces — chaque euro se corrige là où il vit.",
   role: "Cadrage, produit, design « Atelier », mise en ligne — de l'idée à la fiche App Store.",
   shots: [
     {
@@ -101,7 +101,8 @@ export const bandee: Project = {
     "Pas de compte à créer : un prénom, un code, on entre. Enlever la friction, c'était ça, la fonctionnalité.",
   ecarte:
     "Le compte à créer, le fil social, la réservation — tout ce qui fait qu'un ami sur deux n'installe jamais l'app.",
-  learned: null,
+  learned:
+    "J'avais posé un rail de 4 phases en haut de l'événement. En m'en servant, il ne bougeait quasi jamais : il encombrait plus qu'il n'informait. Je l'ai retiré — la teinte et le compteur suffisent à situer où on en est.",
   role: "Concept, parcours, priorités, direction artistique « Golden hour », voix de marque — site et bêta en ligne.",
   link: { label: "Voir le site", url: "https://join-bandee.com" },
   shots: [
