@@ -1,4 +1,4 @@
-import { profile } from "@/lib/content";
+import { profile, projects } from "@/lib/content";
 
 /** Clôture : une intention claire (poste produit), les liens sobres, un colophon
     qui prouve le ship sans le sur-jouer. */
@@ -14,7 +14,22 @@ export function Footer() {
           {profile.closing}
         </p>
 
+        {/* Les apps d'abord : la clôture invite à les ouvrir, autant les tendre. */}
         <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.95rem]">
+          {projects.map((p) => (
+            <a
+              key={p.id}
+              href={p.appStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-ivory transition-colors hover:text-gold"
+            >
+              {`${p.name} sur l’App Store ↗`}
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.95rem]">
           <a
             href={`mailto:${profile.contacts.email}`}
             className="font-medium text-ivory transition-colors hover:text-gold"

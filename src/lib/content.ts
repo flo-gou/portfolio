@@ -30,6 +30,13 @@ export const profile = {
   },
 } as const;
 
+/** Fiches App Store — source unique, réutilisée par la pastille de statut,
+    le lien de l'étude de cas et le pied de page. */
+const appStore = {
+  briquera: "https://apps.apple.com/fr/app/briquera-budget-travaux/id6793282477",
+  bandee: "https://apps.apple.com/fr/app/bandee-voyages-entre-amis/id6791328278",
+} as const;
+
 export type Shot = { src: string; alt: string; caption: string };
 
 export type Project = {
@@ -40,6 +47,8 @@ export type Project = {
   category: string;
   status: string;
   statusHref?: string;
+  /** Fiche App Store — l'app est en ligne. */
+  appStore: string;
   promise: string;
   problem: string;
   /** La décision produit clé — le bloc sobre qui remplace le dispositif barré. */
@@ -49,7 +58,7 @@ export type Project = {
   /** Beat « ce que j'ai appris » — un vrai fait, ou null (masqué) tant qu'il n'est pas confirmé. */
   learned: string | null;
   role: string;
-  link?: { label: string; url: string };
+  links?: { label: string; url: string }[];
   shots: Shot[];
   icon: string;
 };
@@ -60,7 +69,9 @@ export const briquera: Project = {
   name: "Briquera",
   world: "Atelier",
   category: "App mobile · Budget de rénovation",
-  status: "Prêt pour l'App Store",
+  status: "Sur l'App Store",
+  statusHref: appStore.briquera,
+  appStore: appStore.briquera,
   promise: "Tes chantiers, sans mauvaise surprise.",
   problem:
     "Le budget d'une rénovation s'éparpille entre devis, tickets et factures. On bricole un tableur, on lâche le suivi, on découvre les dépassements trop tard.",
@@ -70,7 +81,8 @@ export const briquera: Project = {
     "La gestion de chantier complète, la compta, les devis à signer. Une seule question bien résolue, pas un logiciel de plus.",
   learned:
     "En revoyant le produit, une alerte de dépassement pointait vers un budget global introuvable et non modifiable. Je l'ai retiré : le budget se calcule à partir des pièces — chaque euro se corrige là où il vit.",
-  role: "Cadrage, produit, design « Atelier », mise en ligne — de l'idée à la fiche App Store.",
+  role: "Cadrage, produit, design « Atelier », mise en ligne — de l'idée à l'App Store.",
+  links: [{ label: "Télécharger sur l'App Store", url: appStore.briquera }],
   shots: [
     {
       src: "/mockups/briquera/stats.png",
@@ -92,8 +104,9 @@ export const bandee: Project = {
   name: "Bandee",
   world: "Golden hour",
   category: "App mobile · Organisation d'événements entre amis",
-  status: "Bêta · join-bandee.com",
-  statusHref: "https://join-bandee.com",
+  status: "Sur l'App Store",
+  statusHref: appStore.bandee,
+  appStore: appStore.bandee,
   promise: "Du premier oui au dernier compte réglé.",
   problem:
     "Organiser un week-end à plusieurs, c'est jongler entre un sondage de dates, un tableur de comptes et un fil de messages. Rien n'est relié, personne ne sait où on en est.",
@@ -103,8 +116,11 @@ export const bandee: Project = {
     "Le compte à créer, le fil social, la réservation — tout ce qui fait qu'un ami sur deux n'installe jamais l'app.",
   learned:
     "J'avais posé un rail de 4 phases en haut de l'événement. En m'en servant, il ne bougeait quasi jamais : il encombrait plus qu'il n'informait. Je l'ai retiré — la teinte et le compteur suffisent à situer où on en est.",
-  role: "Concept, parcours, priorités, direction artistique « Golden hour », voix de marque — site et bêta en ligne.",
-  link: { label: "Voir le site", url: "https://join-bandee.com" },
+  role: "Concept, parcours, priorités, direction artistique « Golden hour », voix de marque — app et site en ligne.",
+  links: [
+    { label: "Télécharger sur l'App Store", url: appStore.bandee },
+    { label: "Voir le site", url: profile.contacts.bandee },
+  ],
   shots: [
     {
       src: "/mockups/bandee/dates.png",

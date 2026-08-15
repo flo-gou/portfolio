@@ -75,17 +75,22 @@ export function ProjectCase({
                 <p className="text-[0.92rem] leading-relaxed text-ivory-dim">
                   {p.role}
                 </p>
-                {p.link ? (
-                  <a
-                    href={p.link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-1.5 text-[0.9rem] font-semibold"
-                    style={{ color: theme.accent }}
-                  >
-                    {p.link.label}
-                    <ArrowUpRight size={15} />
-                  </a>
+                {p.links?.length ? (
+                  <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
+                    {p.links.map((l) => (
+                      <a
+                        key={l.url}
+                        href={l.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[0.9rem] font-semibold"
+                        style={{ color: theme.accent }}
+                      >
+                        {l.label}
+                        <ArrowUpRight size={15} />
+                      </a>
+                    ))}
+                  </div>
                 ) : null}
               </div>
             </Reveal>
