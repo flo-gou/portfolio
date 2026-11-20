@@ -2,16 +2,17 @@ import { parcours, profile } from "@/lib/content";
 import { ArrowLink } from "./ArrowLink";
 
 const columns =
-  "md:grid md:grid-cols-[1.3fr_1fr_0.9fr_3fr] md:gap-x-6 md:px-6";
+  "@3xl:grid @3xl:grid-cols-[1.4fr_1.1fr_8.5rem_3fr] @3xl:gap-x-6";
 
 /** Parcours — le CV concis, en tableau : une ligne par entreprise. Les
-    chiffres restent dans la phrase. En colonnes à partir de md, empilé
-    en dessous (pas de tableau qui défile de côté sur mobile). */
+    chiffres restent dans la phrase. En colonnes dès que la carte est assez
+    large (requête de conteneur, pas d'écran : la colonne profil lui prend de
+    la place), empilé sinon — jamais de tableau qui défile de côté. */
 export function Parcours() {
   return (
     <section
       id="parcours"
-      className="scroll-mt-6 overflow-hidden rounded-[14px] border border-line bg-surface"
+      className="@container scroll-mt-6 overflow-hidden rounded-[14px] border border-line bg-surface"
     >
       <div className="flex flex-wrap items-center justify-between gap-x-6 px-6 pb-1.5 pt-3.5">
         <h2 className="text-[22px] font-extrabold leading-tight tracking-[-0.025em]">
@@ -27,7 +28,7 @@ export function Parcours() {
 
       <div
         aria-hidden
-        className={`hidden border-t border-line bg-canvas/60 py-2.5 text-[13px] font-semibold text-label ${columns}`}
+        className={`hidden border-t border-line bg-canvas/60 px-6 py-2.5 text-[13px] font-semibold text-label ${columns}`}
       >
         {parcours.columns.map((column) => (
           <span key={column}>{column}</span>
@@ -50,7 +51,7 @@ export function Parcours() {
                 <p className="text-[13px] text-label">{row.via}</p>
               ) : null}
             </div>
-            <p className="text-[15px] text-muted">{row.period}</p>
+            <p className="whitespace-nowrap text-[15px] text-muted">{row.period}</p>
             <ul className="flex flex-col gap-1.5 text-[15px]">
               {row.delivered.map((item) => (
                 <li key={item}>{item}</li>

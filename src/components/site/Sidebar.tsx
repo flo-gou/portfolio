@@ -13,7 +13,7 @@ export function Sidebar() {
   return (
     <aside
       aria-label="Profil"
-      className="flex flex-col gap-4 lg:sticky lg:top-6 lg:self-start"
+      className="flex flex-col gap-4 lg:sticky lg:top-6 lg:max-h-[calc(100dvh-3rem)] lg:self-start lg:overflow-y-auto"
     >
       <div className="flex flex-col gap-4 rounded-[14px] border border-line bg-surface p-5">
         <div className="flex items-center gap-3.5">

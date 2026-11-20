@@ -20,7 +20,7 @@ export function ProjectCase({ project: p }: { project: Project }) {
   return (
     <article
       id={p.id}
-      className="scroll-mt-6 overflow-hidden rounded-[14px] border border-line bg-surface"
+      className="@container scroll-mt-6 overflow-hidden rounded-[14px] border border-line bg-surface"
     >
       <header
         className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4"
@@ -49,7 +49,7 @@ export function ProjectCase({ project: p }: { project: Project }) {
         />
       </header>
 
-      <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="@3xl:grid @3xl:grid-cols-[minmax(0,1fr)_340px]">
         <div className="flex min-w-0 flex-col gap-3 p-6">
           <p className="mb-1 text-balance text-[28px] font-extrabold leading-[1.12] tracking-[-0.03em]">
             {p.promise}
@@ -105,7 +105,7 @@ export function ProjectCase({ project: p }: { project: Project }) {
           ) : null}
         </div>
 
-        <figure className="flex flex-col gap-3.5 border-t border-line-soft p-6 xl:border-l xl:border-t-0">
+        <figure className="flex flex-col gap-3.5 border-t border-line-soft p-6 @3xl:border-l @3xl:border-t-0">
           <div className="grid max-w-[340px] grid-cols-2 gap-3">
             {p.shots.map((shot) => (
               <Image
