@@ -3,7 +3,7 @@
  *
  *   npm run og
  *
- * Rend une carte HTML aux tokens « Lin & miel » dans Chrome et l'écrit dans
+ * Rend une carte HTML aux tokens « Cockpit » dans Chrome et l'écrit dans
  * src/app/opengraph-image.png, que Next sert automatiquement (convention de
  * fichier). À relancer si le titre ou la baseline du site changent.
  */
@@ -34,46 +34,39 @@ const html = `<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;700;800&display=block" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1200px; height: 630px; display: flex; flex-direction: column;
     justify-content: space-between; padding: 72px 80px;
-    background: #f0e9da; color: #26201a;
-    font-family: "Instrument Sans", system-ui, sans-serif;
+    background: #17152b; color: #ffffff;
+    font-family: Figtree, system-ui, sans-serif;
   }
-  .eyebrow {
-    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.16em; color: #6f6453;
+  h1 { font-weight: 800; font-size: 124px; line-height: 0.98; letter-spacing: -0.04em; }
+  h1 .accent { color: #b4abff; }
+  p.sub { margin-top: 36px; font-size: 30px; font-weight: 500; line-height: 1.4; color: #cfcce6; white-space: nowrap; }
+  footer { display: flex; align-items: center; gap: 22px; }
+  .avatar {
+    width: 72px; height: 72px; border-radius: 16px; background: #5546e0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 27px; font-weight: 800; letter-spacing: -0.02em;
   }
-  h1 {
-    font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800;
-    font-size: 132px; line-height: 0.94; letter-spacing: -0.035em; margin-top: 40px;
-  }
-  h1 .gold { color: #ad620f; }
-  p.sub { margin-top: 36px; font-size: 27px; line-height: 1.45; color: #5a5046; max-width: 30ch; }
-  footer { display: flex; align-items: center; justify-content: space-between; }
-  .name { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 26px; }
-  .meta {
-    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.1em; color: #6f6453;
-  }
-  .rule { height: 1px; background: rgba(38,32,26,0.22); margin-bottom: 26px; }
+  .name { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+  .role { font-size: 23px; font-weight: 500; color: #cfcce6; }
 </style></head>
 <body>
   <div>
-    <div class="eyebrow">Senior Product Manager — Île-de-France</div>
-    <h1>Cadrer, arbitrer,<br><span class="gold">livrer.</span></h1>
-    <p class="sub">Sept ans de plateformes B2B. Deux apps mobiles menées jusqu'à l'App Store.</p>
+    <h1>Cadrer, arbitrer,<br><span class="accent">livrer.</span></h1>
+    <p class="sub">Sept ans de plateformes B2B et SaaS en marque blanche.</p>
   </div>
-  <div>
-    <div class="rule"></div>
-    <footer>
-      <span class="name">Florian Gouesse</span>
-      <span class="meta">Briquera · Bandee</span>
-    </footer>
-  </div>
+  <footer>
+    <span class="avatar">FG</span>
+    <span>
+      <span class="name">Florian Gouesse</span><br>
+      <span class="role">Senior Product Manager · Île-de-France</span>
+    </span>
+  </footer>
 </body></html>`;
 
 const chromePath = await findChrome();

@@ -133,6 +133,7 @@ export type Project = {
   learned: string | null;
   role: string;
   links?: { label: string; url: string }[];
+  /** Captures servies en WebP 510 × 1104 (voir scripts/optimize-images.mjs). */
   shots: { src: string; alt: string }[];
   caption: string;
   icon: string;
@@ -165,15 +166,15 @@ export const bandee: Project = {
     { label: "Voir le site", url: "https://join-bandee.com" },
   ],
   shots: [
-    { src: "/mockups/bandee/dates.png", alt: "Sondage de dates dans Bandee" },
+    { src: "/mockups/bandee/dates.webp", alt: "Sondage de dates dans Bandee" },
     {
-      src: "/mockups/bandee/event-hub.png",
+      src: "/mockups/bandee/event-hub.webp",
       alt: "Accueil d'un événement Bandee",
     },
   ],
   caption:
     "On cale la date : chacun coche ses dispos, la meilleure ressort. Puis l'événement en un endroit : vote, budget, programme, comptes.",
-  icon: "/brand/bandee-icon.png",
+  icon: "/brand/bandee-icon.webp",
   theme: { tint: "#fde9e3", ink: "#b23c1c" },
 };
 
@@ -195,17 +196,17 @@ export const briquera: Project = {
   role: "Cadrage, produit, design « Atelier », mise en ligne — de l'idée à l'App Store.",
   shots: [
     {
-      src: "/mockups/briquera/stats.png",
+      src: "/mockups/briquera/stats.webp",
       alt: "Répartition du budget de Briquera par pièce",
     },
     {
-      src: "/mockups/briquera/accueil.png",
+      src: "/mockups/briquera/accueil.webp",
       alt: "Accueil du chantier dans Briquera",
     },
   ],
   caption:
     "Où part l'argent, pièce par pièce — et le chantier en un écran : engagé, restant, priorités.",
-  icon: "/brand/briquera-icon.png",
+  icon: "/brand/briquera-icon.webp",
   theme: { tint: "#fbebe4", ink: "#a3431d" },
 };
 

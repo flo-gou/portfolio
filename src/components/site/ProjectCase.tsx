@@ -112,8 +112,8 @@ export function ProjectCase({ project: p }: { project: Project }) {
                 key={shot.src}
                 src={shot.src}
                 alt={shot.alt}
-                width={1170}
-                height={2532}
+                width={510}
+                height={1104}
                 sizes="170px"
                 className="h-auto w-full rounded-2xl border border-line"
               />
