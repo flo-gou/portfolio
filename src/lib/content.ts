@@ -20,7 +20,7 @@ export const profile = {
     "Le même métier à chaque projet : décider. Deux besoins réels, deux produits menés jusqu'en ligne.",
   // Clôture
   closing:
-    "Senior product manager en B2B SaaS, ouvert aux opportunités. La meilleure façon de me juger : ouvrir les apps.",
+    "Senior product manager en B2B SaaS, ouvert aux opportunités. Les apps sont juste au-dessus ; le reste du parcours est sur LinkedIn.",
   colophon:
     "Ce site aussi — conçu, écrit et mis en ligne par mes soins. « Lin & miel », 2026.",
   contacts: {
