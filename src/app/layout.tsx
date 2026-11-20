@@ -1,25 +1,12 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Figtree } from "next/font/google";
 import { profile } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const instrument = Instrument_Sans({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 const description =
@@ -76,16 +63,13 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${bricolage.variable} ${instrument.variable} ${plexMono.variable} antialiased`}
+      className={`${figtree.variable} antialiased`}
     >
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <noscript>
-          <style>{`.reveal-item{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
         {children}
       </body>
     </html>

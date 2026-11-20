@@ -1,204 +1,129 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/content";
-import type { ProjectTheme } from "@/lib/themes";
-import { PhoneFrame } from "./PhoneFrame";
-import { Reveal } from "./Reveal";
+import { ArrowLink } from "./ArrowLink";
+import { Status } from "./Status";
 
-/** Une étude de cas courte, même grammaire pour les deux projets.
-    Angle produit (problème → décision → écarté → appris), captures en pleine
-    couleur qui portent la preuve. Le design se montre, il ne se réclame pas. */
-export function ProjectCase({
-  project,
-  theme,
-}: {
-  project: Project;
-  theme: ProjectTheme;
-}) {
-  const p = project;
+type Row = { label: string; value: string; kind?: "decision" | "soft" };
+
+/** Fiche d'un side project — même trame pour tous : problème → décision →
+    hors périmètre → appris → rôle, en clé → valeur. La décision est la seule
+    ligne teintée, à la couleur de l'app. */
+export function ProjectCase({ project: p }: { project: Project }) {
+  const rows: Row[] = [
+    { label: "Problème", value: p.problem },
+    { label: "Décision", value: p.decision, kind: "decision" },
+    { label: "Hors périmètre", value: p.ecarte, kind: "soft" },
+    ...(p.learned ? [{ label: "Appris", value: p.learned }] : []),
+    { label: "Rôle", value: p.role },
+  ];
+
   return (
-    <section
+    <article
       id={p.id}
-      className="border-t border-line px-5 py-24 sm:px-8 sm:py-28"
+      className="scroll-mt-6 overflow-hidden rounded-[14px] border border-line bg-surface"
     >
-      <div className="mx-auto max-w-6xl">
-        {/* En-tête : index · promesse (univers du projet) · statut */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <Reveal>
-            <p className="font-mono text-[0.8rem] uppercase tracking-[0.18em] text-ivory-faint">
-              {p.index} — {p.name}
-            </p>
-            <h2
-              className="font-display mt-4 max-w-2xl text-4xl leading-[1.02] tracking-[-0.02em] sm:text-5xl"
-              style={{ color: theme.accent }}
-            >
-              {p.promise}
-            </h2>
-            <p className="mt-3 font-mono text-[0.72rem] uppercase tracking-wider text-ivory-faint">
-              {p.category}
-            </p>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <StatusPill status={p.status} href={p.statusHref} accent={theme.accent} />
-          </Reveal>
-        </div>
-
-        {/* Corps : récit produit · captures */}
-        <div className="mt-14 grid gap-14 lg:grid-cols-[1fr_minmax(0,22rem)] lg:gap-16">
-          <div className="flex max-w-xl flex-col gap-8">
-            <Reveal>
-              <Block label="Le problème" accent={theme.accentInk}>
-                {p.problem}
-              </Block>
-            </Reveal>
-
-            <Reveal delay={0.05}>
-              <Block label="La décision" accent={theme.accentInk} emphasis>
-                {p.decision}
-              </Block>
-              <p className="mt-3 text-[0.9rem] leading-relaxed text-ivory-faint">
-                <span className="text-ivory-dim">Volontairement écarté — </span>
-                {p.ecarte}
-              </p>
-            </Reveal>
-
-            {p.learned ? (
-              <Reveal delay={0.05}>
-                <Block label="Ce que j'ai appris" accent={theme.accentInk}>
-                  {p.learned}
-                </Block>
-              </Reveal>
-            ) : null}
-
-            <Reveal delay={0.05}>
-              <div className="border-t border-line pt-6">
-                <p className="text-[0.92rem] leading-relaxed text-ivory-dim">
-                  {p.role}
-                </p>
-                {p.links?.length ? (
-                  <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
-                    {p.links.map((l) => (
-                      <a
-                        key={l.url}
-                        href={l.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-[0.9rem] font-semibold"
-                        style={{ color: theme.accentInk }}
-                      >
-                        {l.label}
-                        <ArrowUpRight size={15} />
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            </Reveal>
+      <header
+        className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4"
+        style={{ background: p.theme.tint }}
+      >
+        <div className="flex min-w-0 items-center gap-3.5">
+          <Image
+            src={p.icon}
+            alt=""
+            width={48}
+            height={48}
+            className="size-12 shrink-0 rounded-xl"
+          />
+          <div className="min-w-0">
+            <h3 className="text-[22px] font-extrabold leading-tight tracking-[-0.025em]">
+              {p.name}
+            </h3>
+            <p className="text-sm text-muted">{p.category}</p>
           </div>
-
-          {/* Captures : porteuse (grande) + appui, droites, pleine couleur */}
-          <Reveal delay={0.1}>
-            <figure className="m-0">
-              <div className="flex items-start justify-center gap-0">
-                <div className="mt-14 w-[45%] max-w-[10.5rem]">
-                  <PhoneFrame
-                    captured
-                    screenBg={theme.phoneScreenBg}
-                    chrome={theme.phoneChrome}
-                  >
-                    <Image
-                      src={p.shots[1].src}
-                      alt={p.shots[1].alt}
-                      width={1170}
-                      height={2532}
-                      sizes="180px"
-                      className="block h-auto w-full"
-                    />
-                  </PhoneFrame>
-                </div>
-                <div className="-ml-6 w-[56%] max-w-[13.5rem] drop-shadow-2xl">
-                  <PhoneFrame
-                    captured
-                    screenBg={theme.phoneScreenBg}
-                    chrome={theme.phoneChrome}
-                  >
-                    <Image
-                      src={p.shots[0].src}
-                      alt={p.shots[0].alt}
-                      width={1170}
-                      height={2532}
-                      sizes="220px"
-                      className="block h-auto w-full"
-                      priority
-                    />
-                  </PhoneFrame>
-                </div>
-              </div>
-              <figcaption className="mt-6 max-w-sm text-[0.85rem] leading-relaxed text-ivory-faint">
-                {p.shots[0].caption}
-              </figcaption>
-            </figure>
-          </Reveal>
         </div>
+        <Status
+          label={p.status}
+          href={p.appStore}
+          live={Boolean(p.appStore)}
+          onTint
+        />
+      </header>
+
+      <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="flex min-w-0 flex-col gap-3 p-6">
+          <p className="mb-1 text-balance text-[28px] font-extrabold leading-[1.12] tracking-[-0.03em]">
+            {p.promise}
+          </p>
+
+          <dl>
+            {rows.map((row, i) => {
+              const decision = row.kind === "decision";
+              // Pas de filet autour du bloc teinté : il se détache seul.
+              const ruled = !decision && rows[i - 1]?.kind !== "decision";
+              return (
+                <div
+                  key={row.label}
+                  className={`grid gap-x-4 gap-y-0.5 sm:grid-cols-[120px_minmax(0,1fr)] ${
+                    decision ? "-mx-3.5 rounded-[10px] p-3.5" : "py-3"
+                  } ${ruled ? "border-t border-line-soft" : ""}`}
+                  style={decision ? { background: p.theme.tint } : undefined}
+                >
+                  <dt
+                    className={`text-[13px] ${
+                      decision
+                        ? "font-bold leading-[25px]"
+                        : "leading-[23px] text-label"
+                    }`}
+                    style={decision ? { color: p.theme.ink } : undefined}
+                  >
+                    {row.label}
+                  </dt>
+                  <dd
+                    className={
+                      decision
+                        ? "text-[17px] font-semibold leading-[25px] text-ink"
+                        : `text-[15px] leading-[23px] ${
+                            row.kind === "soft" ? "text-muted" : "text-ink-2"
+                          }`
+                    }
+                  >
+                    {row.value}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+
+          {p.links?.length ? (
+            <div className="flex flex-wrap gap-x-6">
+              {p.links.map((link) => (
+                <ArrowLink key={link.url} href={link.url}>
+                  {link.label}
+                </ArrowLink>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
+        <figure className="flex flex-col gap-3.5 border-t border-line-soft p-6 xl:border-l xl:border-t-0">
+          <div className="grid max-w-[340px] grid-cols-2 gap-3">
+            {p.shots.map((shot) => (
+              <Image
+                key={shot.src}
+                src={shot.src}
+                alt={shot.alt}
+                width={1170}
+                height={2532}
+                sizes="170px"
+                className="h-auto w-full rounded-2xl border border-line"
+              />
+            ))}
+          </div>
+          <figcaption className="max-w-[340px] text-[13px] text-muted">
+            {p.caption}
+          </figcaption>
+        </figure>
       </div>
-    </section>
-  );
-}
-
-function Block({
-  label,
-  accent,
-  emphasis = false,
-  children,
-}: {
-  label: string;
-  accent: string;
-  emphasis?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <span
-        className="font-mono text-[0.7rem] uppercase tracking-[0.16em]"
-        style={{ color: accent }}
-      >
-        {label}
-      </span>
-      <p
-        className={`mt-2.5 leading-relaxed ${
-          emphasis ? "text-[1.05rem] text-ivory" : "text-[0.98rem] text-ivory-dim"
-        }`}
-      >
-        {children}
-      </p>
-    </div>
-  );
-}
-
-function StatusPill({
-  status,
-  href,
-  accent,
-}: {
-  status: string;
-  href?: string;
-  accent: string;
-}) {
-  const inner = (
-    <span className="inline-flex items-center gap-2 rounded-full border border-line-strong px-3.5 py-1.5 font-mono text-[0.7rem] uppercase tracking-wider text-ivory-dim">
-      <span
-        className="h-1.5 w-1.5 rounded-full"
-        style={{ background: accent }}
-      />
-      {status}
-      {href ? <ArrowUpRight size={12} className="text-ivory-faint" /> : null}
-    </span>
-  );
-  return href ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
-      {inner}
-    </a>
-  ) : (
-    inner
+    </article>
   );
 }

@@ -1,31 +1,35 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Design tokens — « Lin & miel ».
-   Une seule identité pour le site ; chaque étude de cas n'emprunte à
-   son app qu'un accent, porté par src/lib/themes.ts.
-   Contrastes vérifiés AA sur le fond lin (#f0e9da).
+   Design tokens — « Cockpit ».
+   Une interface d'outil B2B : fond gris-lilas, surfaces blanches, encre nuit,
+   un seul accent indigo. Chaque side project n'apporte que sa teinte, portée
+   par son `theme` dans src/lib/content.ts.
+   Contrastes vérifiés AA (texte ≥ 4.5:1 sur sa surface).
    ============================================================ */
 @theme {
-  /* Fonts (variables injectées par next/font) */
-  --font-display: var(--font-bricolage);
-  --font-body: var(--font-instrument);
-  --font-mono: var(--font-plex-mono);
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
 
-  /* ---- Portfolio chrome — Direction O « Lin & miel » (clair, chaud) ----
-     Les noms de tokens sont conservés (espresso = fond, ivory = texte,
-     gold = accent) ; seules les valeurs basculent en clair. */
-  --color-espresso: #f0e9da; /* lin — fond de page */
-  --color-espresso-2: #e8dfcc; /* surface chaude surélevée */
-  --color-espresso-3: #e0d5bf;
-  --color-ivory: #26201a; /* encre — texte principal */
-  --color-ivory-dim: #5a5046; /* texte atténué — 6.5:1 sur le lin */
-  --color-ivory-faint: #6f6453; /* texte discret — 4.8:1, seuil AA */
-  --color-gold: #ad620f; /* miel profond — grands titres et aplats (≥ 24 px) */
-  --color-gold-ink: #96550a; /* miel encré — liens et petit texte (4.8:1) */
-  --color-gold-soft: #d98a3c; /* miel vif — décoratif */
-  --color-line: rgba(38, 32, 26, 0.13);
-  --color-line-strong: rgba(38, 32, 26, 0.22);
+  --color-canvas: #f3f2f8; /* fond de page */
+  --color-surface: #ffffff; /* cartes */
+  --color-ink: #17152b; /* texte principal, bandeau sombre */
+  --color-ink-2: #2a2745; /* texte courant */
+  --color-muted: #4a4763; /* texte atténué */
+  --color-label: #5e5b78; /* clés, légendes — 6.5:1 sur blanc */
+  --color-line: #e2e0ea;
+  --color-line-soft: #eceaf2;
+
+  --color-accent: #5546e0; /* aplats : bouton, avatar */
+  --color-accent-ink: #4638c9; /* liens */
+  --color-accent-deep: #3a2db0; /* liens survolés, texte des étiquettes */
+  --color-accent-tint: #eceafd; /* fond des étiquettes */
+  --color-accent-light: #b4abff; /* accent sur fond sombre */
+  --color-on-ink: #cfcce6; /* texte secondaire sur fond sombre */
+
+  --color-ok: #12a150; /* pastille « en ligne » */
+  --color-ok-ink: #0b6b3a;
+  --color-ok-tint: #e4f6ea;
+  --color-off: #8a87a3; /* pastille « hors ligne » */
 }
 
 html {
@@ -42,89 +46,17 @@ html {
 }
 
 body {
-  background: var(--color-espresso);
-  color: var(--color-ivory);
-  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
 }
 
 ::selection {
-  background: var(--color-gold);
-  color: var(--color-espresso);
+  background: var(--color-accent);
+  color: #fff;
 }
 
-/* Focus visible cohérent sur fond sombre comme clair */
-:where(a, button, input, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-gold);
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 4px;
-}
-
-/* Typo utilitaires */
-.font-display {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.font-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
-}
-
-/* Eyebrow / label mono — signature "design token" */
-.eyebrow {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-/* Grain léger pour casser l'aplat des fonds sombres */
-.grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  z-index: 0;
-}
-
-/* Dégradé sunset réel de Bandee (rose horizon → corail → ambre) */
-.bandee-sunset {
-  background-image: linear-gradient(
-    100deg,
-    var(--color-band-coral-2) 0%,
-    var(--color-band-coral) 48%,
-    var(--color-band-amber) 100%
-  );
-}
-
-/* Barre "spectre" du hero — dégradé chaud « Lin & miel » */
-.spectrum {
-  background-image: linear-gradient(
-    90deg,
-    #8a4e12 0%,
-    #ad620f 20%,
-    #c55a33 38%,
-    #d98a3c 58%,
-    #e6a95e 76%,
-    #d98a3c 100%
-  );
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.marquee-track {
-  animation: marquee 34s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
 }
