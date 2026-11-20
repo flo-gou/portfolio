@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import {
-  Bricolage_Grotesque,
-  Instrument_Sans,
-  IBM_Plex_Mono,
-  Outfit,
-  Archivo,
-  Caveat,
-} from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { profile } from "@/lib/content";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -27,58 +22,50 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["400", "600", "800"],
-});
-
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-});
-
-const siteUrl = "https://florian-gouesse.dev";
+const description =
+  "Senior product manager, 7 ans en B2B et SaaS : espace client à 40 000 utilisateurs actifs, canaux conversationnels, plateformes en marque blanche. À côté, deux apps mobiles menées jusqu'à l'App Store — Briquera et Bandee.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Florian Gouesse — Senior Product Manager",
-  description:
-    "Senior product manager, 7 ans en B2B et SaaS. Cadrer, arbitrer, livrer. À côté, je conçois et j'expédie des apps mobiles grand public — deux à ouvrir : Briquera et Bandee.",
+  description,
+  alternates: { canonical: "/" },
   keywords: [
     "Florian Gouesse",
-    "product manager",
-    "product management",
-    "product designer",
+    "senior product manager",
+    "product manager B2B",
+    "product manager SaaS",
+    "product discovery",
     "portfolio",
     "Briquera",
     "Bandee",
-    "React Native",
-    "Expo",
-    "UX UI",
   ],
-  authors: [{ name: "Florian Gouesse" }],
+  authors: [{ name: profile.name }],
   openGraph: {
     title: "Florian Gouesse — Senior Product Manager",
     description:
-      "Cadrer, arbitrer, livrer. Deux applications mobiles menées jusqu'en ligne : Briquera & Bandee.",
-    type: "website",
+      "Cadrer, arbitrer, livrer. Sept ans de plateformes B2B, deux apps mobiles menées jusqu'à l'App Store.",
+    type: "profile",
     locale: "fr_FR",
     url: siteUrl,
+    siteName: "Florian Gouesse",
   },
   twitter: {
     card: "summary_large_image",
     title: "Florian Gouesse — Senior Product Manager",
-    description:
-      "Cadrer, arbitrer, livrer. Briquera & Bandee, menées jusqu'en ligne.",
+    description: "Cadrer, arbitrer, livrer. Briquera & Bandee, menées jusqu'à l'App Store.",
   },
+};
+
+/** JSON-LD — ce qui permet à Google de relier le site au nom et au profil. */
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  url: siteUrl,
+  address: { "@type": "PostalAddress", addressRegion: profile.location, addressCountry: "FR" },
+  sameAs: [profile.contacts.linkedin, profile.contacts.github],
 };
 
 export default function RootLayout({
@@ -89,9 +76,13 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${bricolage.variable} ${instrument.variable} ${plexMono.variable} ${outfit.variable} ${archivo.variable} ${caveat.variable} antialiased`}
+      className={`${bricolage.variable} ${instrument.variable} ${plexMono.variable} antialiased`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <noscript>
           <style>{`.reveal-item{opacity:1!important;transform:none!important}`}</style>
         </noscript>

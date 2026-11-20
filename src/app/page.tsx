@@ -1,5 +1,6 @@
 import { Nav } from "@/components/site/Nav";
 import { Manifesto } from "@/components/site/Manifesto";
+import { Track } from "@/components/site/Track";
 import { ProjectCase } from "@/components/site/ProjectCase";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
@@ -12,6 +13,9 @@ export default function Home() {
       <Nav />
       <main>
         <Manifesto />
+
+        {/* Le track record salarié d'abord : c'est lui qui porte la séniorité. */}
+        <Track />
 
         {/* Liaison — une phrase qui pose la grille, remplace « À propos » */}
         <section

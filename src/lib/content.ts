@@ -12,14 +12,15 @@ export const profile = {
   subhead:
     "Senior product manager, 7 ans à transformer des problèmes clients en produits B2B mesurables. À côté, je conçois et j'expédie des apps mobiles grand public — de l'idée au store. Deux à ouvrir aujourd'hui.",
   bio: "Je pars d'un problème réel, je tranche ce que le produit fait et surtout ce qu'il ne fait pas — puis je le mène jusqu'en ligne. Le design est mon second métier : il rend chaque arbitrage visible et tenu.",
-  // Ancrage de séniorité (le point n°1 pour un CPO) — entreprises repères du CV.
-  anchor: "Carglass · Leroy Merlin · Padam · Safran",
+  // Ce que je cherche — le lecteur ne doit pas avoir à le deviner. Les
+  // entreprises repères, elles, ancrent le bloc « En entreprise ».
+  looking: "Je cherche un poste de senior product manager en B2B SaaS.",
   // Liaison — remplace toute la section « À propos »
   liaison:
     "Le même métier à chaque projet : décider. Deux besoins réels, deux produits menés jusqu'en ligne.",
   // Clôture
   closing:
-    "Ouvert aux opportunités produit. La meilleure façon de me juger : ouvrir les apps.",
+    "Senior product manager en B2B SaaS, ouvert aux opportunités. La meilleure façon de me juger : ouvrir les apps.",
   colophon:
     "Ce site aussi — conçu, écrit et mis en ligne par mes soins. « Lin & miel », 2026.",
   contacts: {
@@ -28,6 +29,41 @@ export const profile = {
     github: "https://github.com/flo-gou" as string,
     bandee: "https://join-bandee.com",
   },
+} as const;
+
+/** En entreprise — le track record salarié, en quatre faits vérifiables.
+    Même grammaire que les études de cas : un résultat, la décision derrière.
+    Source : CV (Carglass, ADEO, Padam). Aucun chiffre qui n'y figure pas. */
+export const track = {
+  label: "En entreprise",
+  lead: "Sept ans sur des plateformes B2B et SaaS en marque blanche. Le même métier, à une autre échelle.",
+  items: [
+    {
+      metric: "0 → 40 000",
+      unit: "utilisateurs actifs mensuels",
+      body:
+        "L'espace client Carglass, lancé de zéro et tenu depuis. +2,7 pts de rétention.",
+    },
+    {
+      metric: "70 000",
+      unit: "conversations par an",
+      body:
+        "Des canaux chat et WhatsApp où l'IA et les conseillers se passent la main, en production.",
+    },
+    {
+      metric: "0 → 3",
+      unit: "assureurs partenaires",
+      body:
+        "Un dashboard de parcours en marque blanche, vendu puis déployé chez leurs équipes.",
+    },
+    {
+      metric: "~80",
+      unit: "personnes alignées",
+      body:
+        "Chez Leroy Merlin, une équipe core et cinq équipes dédiées autour d'une seule plateforme B2B.",
+    },
+  ],
+  footnote: "Carglass · Leroy Merlin · Padam · Safran — le parcours en détail",
 } as const;
 
 /** Fiches App Store — source unique, réutilisée par la pastille de statut,
@@ -139,6 +175,7 @@ export const bandee: Project = {
 export const projects = [briquera, bandee] as const;
 
 export const nav = [
+  { href: "#parcours", label: "Parcours" },
   { href: "#projets", label: "Projets" },
   { href: "#contact", label: "Contact" },
 ] as const;

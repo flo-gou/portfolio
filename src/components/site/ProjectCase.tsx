@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/content";
-import type { ProjectTheme } from "./ProjectSection";
+import type { ProjectTheme } from "@/lib/themes";
 import { PhoneFrame } from "./PhoneFrame";
 import { Reveal } from "./Reveal";
 
@@ -47,13 +47,13 @@ export function ProjectCase({
         <div className="mt-14 grid gap-14 lg:grid-cols-[1fr_minmax(0,22rem)] lg:gap-16">
           <div className="flex max-w-xl flex-col gap-8">
             <Reveal>
-              <Block label="Le problème" accent={theme.accent}>
+              <Block label="Le problème" accent={theme.accentInk}>
                 {p.problem}
               </Block>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <Block label="La décision" accent={theme.accent} emphasis>
+              <Block label="La décision" accent={theme.accentInk} emphasis>
                 {p.decision}
               </Block>
               <p className="mt-3 text-[0.9rem] leading-relaxed text-ivory-faint">
@@ -64,7 +64,7 @@ export function ProjectCase({
 
             {p.learned ? (
               <Reveal delay={0.05}>
-                <Block label="Ce que j'ai appris" accent={theme.accent}>
+                <Block label="Ce que j'ai appris" accent={theme.accentInk}>
                   {p.learned}
                 </Block>
               </Reveal>
@@ -84,7 +84,7 @@ export function ProjectCase({
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 text-[0.9rem] font-semibold"
-                        style={{ color: theme.accent }}
+                        style={{ color: theme.accentInk }}
                       >
                         {l.label}
                         <ArrowUpRight size={15} />

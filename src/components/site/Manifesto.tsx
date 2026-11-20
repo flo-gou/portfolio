@@ -60,14 +60,12 @@ export function Manifesto() {
           {profile.bio}
         </motion.p>
 
-        {profile.anchor ? (
-          <motion.p
-            variants={item}
-            className="mt-6 font-mono text-[0.78rem] uppercase tracking-wider text-ivory-faint"
-          >
-            {profile.anchor}
-          </motion.p>
-        ) : null}
+        <motion.p
+          variants={item}
+          className="mt-6 font-mono text-[0.78rem] uppercase tracking-wider text-ivory-faint"
+        >
+          {profile.looking}
+        </motion.p>
 
         <motion.div variants={item} className="mt-11 flex items-center gap-6">
           <a

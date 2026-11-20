@@ -1,25 +1,27 @@
 # Portfolio — Florian Gouesse
 
-Portfolio de **Florian Gouesse**, designer produit indépendant. Met en avant deux
-études de cas — **Briquera** (suivi de budget de rénovation) et **Bandee**
-(organisation d'événements de groupe) — chacune ré-habillée avec le vrai design
-system de l'app.
+Portfolio de **Florian Gouesse**, senior product manager. Une page unique :
+un manifeste, le track record salarié en quatre chiffres, puis deux études de
+cas — **Briquera** (budget de rénovation) et **Bandee** (organisation
+d'événements entre amis), toutes deux publiées sur l'App Store.
+
+Objectif du site : décrocher un poste de senior PM en B2B SaaS. Le lecteur visé
+est un CPO / Head of Product ; l'action attendue est un contact via LinkedIn.
 
 ## Stack
 
-- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Next.js 16** (App Router, export statique) + **React 19** + **TypeScript**
 - **Tailwind CSS v4**
 - **motion** (animations), **lucide-react** (icônes)
-- Polices : Bricolage Grotesque · Instrument Sans · IBM Plex Mono (+ Outfit,
-  Archivo, Caveat pour les maquettes d'app)
+- Polices : Bricolage Grotesque · Instrument Sans · IBM Plex Mono
+- Hébergement : **Cloudflare Workers Static Assets**
 
 ## Démarrer
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # build de production
-npm start        # sert le build
+npm run build    # export statique dans out/
 ```
 
 ## Structure
@@ -27,33 +29,40 @@ npm start        # sert le build
 ```
 src/
   app/
-    layout.tsx          # polices + métadonnées SEO
-    page.tsx            # assemble les sections
-    globals.css         # design tokens (chrome + mondes Briquera/Bandee)
-    icon.svg            # favicon
-    api/contact/route.ts# réception du formulaire de contact
-  components/
-    site/               # Nav, Hero, About, ProjectSection, Capabilities,
-                        # OtherProjects, Contact, Footer, PhoneFrame, Reveal…
-    mockups/            # écrans d'app recréés en code (Briquera / Bandee)
+    layout.tsx            # polices, métadonnées SEO, JSON-LD Person
+    page.tsx              # assemble les sections
+    globals.css           # design tokens « Lin & miel »
+    sitemap.ts robots.ts  # dérivés de src/lib/site.ts
+    opengraph-image.png   # image de partage, générée par npm run og
+  components/site/        # Nav, Manifesto, Track, ProjectCase, PhoneFrame,
+                          # Reveal, Footer
   lib/
-    content.ts          # tout le contenu (source unique)
-    themes.ts           # thèmes des deux études de cas
-public/brand/           # icônes & logos des apps
+    content.ts            # tout le contenu (source unique)
+    themes.ts             # accent de chaque étude de cas
+    site.ts               # domaine de production
+public/mockups/           # captures réelles des apps
+public/brand/             # icônes des apps
+worker/index.ts           # Worker Cloudflare : sert out/
 ```
 
 ## Personnaliser
 
-- **Contenu** : tout est dans `src/lib/content.ts` (textes, métriques, liens).
-- **Formulaire de contact** : voir `.env.example` pour activer l'envoi via
-  [Resend](https://resend.com). Sans clé, les messages sont acceptés mais non
-  livrés (repli mailto côté front).
-- **Vraies captures d'écran** : les maquettes sont dans `src/components/mockups/`.
-  Pour les remplacer par de vraies captures TestFlight/simulateur, échange le
-  contenu du `PhoneFrame` par une `<Image>` dans `ProjectSection`.
+- **Contenu** : tout est dans `src/lib/content.ts` — textes, chiffres, liens.
+- **Domaine** : `src/lib/site.ts`, seul endroit à changer (canonique, sitemap,
+  robots, image de partage).
+- **Image de partage** : `npm run og` régénère `src/app/opengraph-image.png`
+  (nécessite Chrome installé). À relancer si le titre change.
+- **Captures des apps** : `npm run capture` — voir `scripts/README-capture.md`.
+
+## Contraintes tenues
+
+- Contrastes **WCAG AA** sur tout le texte courant (ramp encre + accents
+  encrés pour le petit texte, voir `globals.css` et `themes.ts`).
+- `prefers-reduced-motion` respecté, repli `noscript` pour les animations.
+- Aucun formulaire, aucune collecte : le contact passe par LinkedIn et mailto.
 
 ## Déployer
 
-Optimisé pour [Vercel](https://vercel.com) (déploiement direct du dépôt). Pense à
-définir les variables d'environnement du formulaire de contact si tu l'actives,
-et à ajuster `metadataBase` dans `src/app/layout.tsx` avec ton domaine réel.
+```bash
+npx wrangler deploy
+```

@@ -1,7 +1,9 @@
+import { ArrowUpRight } from "lucide-react";
 import { profile, projects } from "@/lib/content";
 
-/** Clôture : une intention claire (poste produit), les liens sobres, un colophon
-    qui prouve le ship sans le sur-jouer. */
+/** Clôture : une intention claire, UNE action mise en avant — LinkedIn, qui
+    porte le parcours détaillé — et tout le reste en retrait. Le seul aplat
+    plein du site : il est ici parce qu'il n'y a qu'une chose à faire. */
 export function Footer() {
   return (
     <footer
@@ -14,36 +16,37 @@ export function Footer() {
           {profile.closing}
         </p>
 
-        {/* Les apps d'abord : la clôture invite à les ouvrir, autant les tendre. */}
-        <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.95rem]">
+        <div className="mt-9">
+          <a
+            href={profile.contacts.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-gold-ink px-6 py-3 text-[0.95rem] font-semibold text-espresso transition-opacity hover:opacity-90"
+          >
+            Me contacter sur LinkedIn
+            <ArrowUpRight size={17} />
+          </a>
+        </div>
+
+        {/* Tout le reste en retrait : l'email, les apps, le code. */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.92rem]">
+          <a
+            href={`mailto:${profile.contacts.email}`}
+            className="text-ivory-dim transition-colors hover:text-ivory"
+          >
+            {profile.contacts.email}
+          </a>
           {projects.map((p) => (
             <a
               key={p.id}
               href={p.appStore}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-ivory transition-colors hover:text-gold"
+              className="text-ivory-dim transition-colors hover:text-ivory"
             >
               {`${p.name} sur l’App Store ↗`}
             </a>
           ))}
-        </div>
-
-        <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.95rem]">
-          <a
-            href={`mailto:${profile.contacts.email}`}
-            className="font-medium text-ivory transition-colors hover:text-gold"
-          >
-            {profile.contacts.email}
-          </a>
-          <a
-            href={profile.contacts.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ivory-dim transition-colors hover:text-ivory"
-          >
-            LinkedIn ↗
-          </a>
           <a
             href={profile.contacts.github}
             target="_blank"

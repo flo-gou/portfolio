@@ -1,19 +1,16 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Design tokens — portfolio "chrome" + les deux mondes produit
-   Le portfolio a sa propre identité chaude & sombre (espresso/or).
-   Chaque étude de cas ré-habille la section avec les VRAIS tokens
-   de l'app : Briquera « Atelier », Bandee « Golden hour ».
+   Design tokens — « Lin & miel ».
+   Une seule identité pour le site ; chaque étude de cas n'emprunte à
+   son app qu'un accent, porté par src/lib/themes.ts.
+   Contrastes vérifiés AA sur le fond lin (#f0e9da).
    ============================================================ */
 @theme {
   /* Fonts (variables injectées par next/font) */
   --font-display: var(--font-bricolage);
   --font-body: var(--font-instrument);
   --font-mono: var(--font-plex-mono);
-  --font-outfit: var(--font-outfit);
-  --font-archivo: var(--font-archivo);
-  --font-hand: var(--font-caveat);
 
   /* ---- Portfolio chrome — Direction O « Lin & miel » (clair, chaud) ----
      Les noms de tokens sont conservés (espresso = fond, ivory = texte,
@@ -22,37 +19,13 @@
   --color-espresso-2: #e8dfcc; /* surface chaude surélevée */
   --color-espresso-3: #e0d5bf;
   --color-ivory: #26201a; /* encre — texte principal */
-  --color-ivory-dim: #6c6054; /* texte atténué */
-  --color-ivory-faint: #988a79; /* texte discret */
-  --color-gold: #ad620f; /* miel profond — accent (texte + fond de bouton) */
+  --color-ivory-dim: #5a5046; /* texte atténué — 6.5:1 sur le lin */
+  --color-ivory-faint: #6f6453; /* texte discret — 4.8:1, seuil AA */
+  --color-gold: #ad620f; /* miel profond — grands titres et aplats (≥ 24 px) */
+  --color-gold-ink: #96550a; /* miel encré — liens et petit texte (4.8:1) */
   --color-gold-soft: #d98a3c; /* miel vif — décoratif */
   --color-line: rgba(38, 32, 26, 0.13);
   --color-line-strong: rgba(38, 32, 26, 0.22);
-
-  /* ---- Briquera — "Atelier" ---- */
-  --color-briq-navy: #1b3a5b;
-  --color-briq-navy-deep: #12293f;
-  --color-briq-plaster: #ece3d2;
-  --color-briq-plaster-2: #f5efe1;
-  --color-briq-crayon: #d9531e;
-  --color-briq-crayon-2: #e8703b;
-  --color-briq-niveau: #1c8a6b;
-  --color-briq-niveau-soft: #cfede2;
-  --color-briq-ocre: #c4881a;
-  --color-briq-sanguine: #b2342a;
-  --color-briq-ink: #221f1b;
-
-  /* ---- Bandee — "Golden hour" ---- */
-  --color-band-cream: #fff7ed;
-  --color-band-cream-2: #f9ebda;
-  --color-band-coral: #ff6b4a;
-  --color-band-coral-2: #ff5a6e;
-  --color-band-amber: #ffb25e;
-  --color-band-amber-2: #ffc062;
-  --color-band-plum: #33203b;
-  --color-band-violet: #7c5cbf;
-  --color-band-green: #2e9e6b;
-  --color-band-red: #d64545;
 }
 
 html {

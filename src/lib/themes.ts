@@ -1,38 +1,28 @@
-import type { ProjectTheme } from "@/components/site/ProjectSection";
+/** Thème d'une étude de cas — réduit à ce que le rendu utilise vraiment :
+    un accent pour les titres, sa variante encrée pour le petit texte
+    (contraste AA), et la teinte du cadre iPhone. */
+export type ProjectTheme = {
+  /** Accent du monde — grands titres uniquement (≥ 24 px). */
+  accent: string;
+  /** Même teinte, assombrie pour le texte courant et les liens (≥ 4.5:1). */
+  accentInk: string;
+  phoneChrome: string;
+  phoneScreenBg: string;
+};
 
-/* Thèmes des études de cas — harmonisés avec la base « Lin & miel » :
-   fonds chauds et clairs, chaque projet distingué par son accent. */
+/* Harmonisés avec la base « Lin & miel » : chaque projet garde sa teinte,
+   déclinée en deux valeurs selon la taille du texte. */
 
 export const briqueraTheme: ProjectTheme = {
-  bg: "#e7dcc6", // sable chaud (un ton sous le lin, pour le rythme)
-  panel: "#f1e8d7",
-  panelSoft: "#ede2cd",
-  text: "#2b2019",
-  textDim: "#6c6053",
   accent: "#c0562e", // terracotta / crayon (monde « Atelier »)
-  line: "rgba(43,32,25,0.14)",
-  meta: "#8d8069",
-  headingFontClass: "font-archivo",
-  ctaBg: "#c0562e",
-  ctaText: "#fdf6ec",
+  accentInk: "#a3431d",
   phoneChrome: "#221f1b",
   phoneScreenBg: "#f5efe1",
-  glow: "#d98a3c",
 };
 
 export const bandeeTheme: ProjectTheme = {
-  bg: "#faf1e3", // crème claire
-  panel: "#ffffff",
-  panelSoft: "#f6ead9",
-  text: "#33203b", // prune
-  textDim: "#6c5567",
-  accent: "#e0512f", // corail (monde « Golden hour »), assombri pour le clair
-  line: "rgba(51,32,59,0.12)",
-  meta: "#8a7686",
-  headingFontClass: "font-outfit",
-  ctaBg: "linear-gradient(100deg,#ff5a6e 0%,#ff6b4a 48%,#ffb25e 100%)",
-  ctaText: "#3a1420",
+  accent: "#e0512f", // corail (monde « Golden hour »)
+  accentInk: "#b23c1c",
   phoneChrome: "#33203b",
   phoneScreenBg: "#fff7ed",
-  glow: "#ffcf8f",
 };

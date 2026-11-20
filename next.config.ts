@@ -2,8 +2,7 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
-  // Export 100 % statique → déployé tel quel sur Cloudflare Pages.
-  // Le formulaire de contact est géré par une Pages Function (functions/api/contact.ts).
+  // Export 100 % statique → servi par le Worker Cloudflare (worker/index.ts).
   output: "export",
   images: {
     // Pas d'optimiseur d'images côté serveur en statique.
