@@ -36,7 +36,7 @@ export function Footer() {
           >
             {profile.contacts.email}
           </a>
-          {projects.map((p) => (
+          {projects.filter((p) => p.appStore).map((p) => (
             <a
               key={p.id}
               href={p.appStore}

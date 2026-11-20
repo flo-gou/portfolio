@@ -10,7 +10,7 @@ export const profile = {
   // Manifeste (ex-hero)
   headline: ["Cadrer, arbitrer,", "livrer."], // l'accent miel porte sur le 2e fragment
   subhead:
-    "Senior product manager, 7 ans à transformer des problèmes clients en produits B2B mesurables. À côté, je conçois et j'expédie des apps mobiles grand public — de l'idée au store. Deux à ouvrir aujourd'hui.",
+    "Senior product manager, 7 ans à transformer des problèmes clients en produits B2B mesurables. À côté, je conçois et j'expédie des apps mobiles grand public — de l'idée au store.",
   bio: "Je pars d'un problème réel, je tranche ce que le produit fait et surtout ce qu'il ne fait pas — puis je le mène jusqu'en ligne. Le design est mon second métier : il rend chaque arbitrage visible et tenu.",
   // Ce que je cherche — le lecteur ne doit pas avoir à le deviner. Les
   // entreprises repères, elles, ancrent le bloc « En entreprise ».
@@ -69,7 +69,6 @@ export const track = {
 /** Fiches App Store — source unique, réutilisée par la pastille de statut,
     le lien de l'étude de cas et le pied de page. */
 const appStore = {
-  briquera: "https://apps.apple.com/fr/app/briquera-budget-travaux/id6793282477",
   bandee: "https://apps.apple.com/fr/app/bandee-voyages-entre-amis/id6791328278",
 } as const;
 
@@ -83,8 +82,8 @@ export type Project = {
   category: string;
   status: string;
   statusHref?: string;
-  /** Fiche App Store — l'app est en ligne. */
-  appStore: string;
+  /** Fiche App Store — absente quand l'app n'est plus distribuée. */
+  appStore?: string;
   promise: string;
   problem: string;
   /** La décision produit clé — le bloc sobre qui remplace le dispositif barré. */
@@ -105,9 +104,8 @@ export const briquera: Project = {
   name: "Briquera",
   world: "Atelier",
   category: "App mobile · Budget de rénovation",
-  status: "Sur l'App Store",
-  statusHref: appStore.briquera,
-  appStore: appStore.briquera,
+  // Briquera n'est plus distribuée : ni pastille cliquable, ni lien de téléchargement.
+  status: "Retirée de l'App Store",
   promise: "Tes chantiers, sans mauvaise surprise.",
   problem:
     "Le budget d'une rénovation s'éparpille entre devis, tickets et factures. On bricole un tableur, on lâche le suivi, on découvre les dépassements trop tard.",
@@ -118,7 +116,6 @@ export const briquera: Project = {
   learned:
     "En revoyant le produit, une alerte de dépassement pointait vers un budget global introuvable et non modifiable. Je l'ai retiré : le budget se calcule à partir des pièces — chaque euro se corrige là où il vit.",
   role: "Cadrage, produit, design « Atelier », mise en ligne — de l'idée à l'App Store.",
-  links: [{ label: "Télécharger sur l'App Store", url: appStore.briquera }],
   shots: [
     {
       src: "/mockups/briquera/stats.png",
