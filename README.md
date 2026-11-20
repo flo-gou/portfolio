@@ -1,9 +1,9 @@
 # Portfolio — Florian Gouesse
 
-Portfolio de **Florian Gouesse**, senior product manager. Une page unique :
-un manifeste, le track record salarié en quatre chiffres, puis deux études de
-cas — **Briquera** (budget de rénovation) et **Bandee** (organisation
-d'événements entre amis), toutes deux publiées sur l'App Store.
+Portfolio de **Florian Gouesse**, senior product manager. Une page unique, lue
+comme la fiche d'un outil B2B : le profil en colonne, le parcours en CV concis,
+puis deux side projects — **Bandee** (organisation d'événements entre amis, sur
+l'App Store) et **Briquera** (budget de rénovation, retirée de l'App Store).
 
 En ligne : **https://flo-gou.com** (Cloudflare Worker `portfolio`, www redirige
 vers l'apex).

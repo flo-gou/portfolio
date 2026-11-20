@@ -4,11 +4,18 @@
   "main": "worker/index.ts",
   "compatibility_date": "2026-07-17",
   // Domaine de production — déclaré ici pour que le repo dise où va le site.
-  // Doit rester en phase avec src/lib/site.ts.
-  "routes": [{ "pattern": "flo-gou.com", "custom_domain": true }],
+  // Doit rester en phase avec src/lib/site.ts. www est déclaré pour exister
+  // (DNS + certificat) ; le Worker le renvoie aussitôt vers l'adresse sans www.
+  "routes": [
+    { "pattern": "flo-gou.com", "custom_domain": true },
+    { "pattern": "www.flo-gou.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",
+    // Le Worker voit chaque requête avant les fichiers : nécessaire pour
+    // rediriger www, qui se décide sur le nom d'hôte et non sur le chemin.
+    "run_worker_first": true,
     "not_found_handling": "404-page"
   }
 }
