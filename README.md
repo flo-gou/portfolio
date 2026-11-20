@@ -5,6 +5,9 @@ un manifeste, le track record salarié en quatre chiffres, puis deux études de
 cas — **Briquera** (budget de rénovation) et **Bandee** (organisation
 d'événements entre amis), toutes deux publiées sur l'App Store.
 
+En ligne : **https://flo-gou.com** (Cloudflare Worker `portfolio`, www redirige
+vers l'apex).
+
 Objectif du site : décrocher un poste de senior PM en B2B SaaS. Le lecteur visé
 est un CPO / Head of Product ; l'action attendue est un contact via LinkedIn.
 
@@ -64,5 +67,8 @@ worker/index.ts           # Worker Cloudflare : sert out/
 ## Déployer
 
 ```bash
-npx wrangler deploy
+npm run build && npx wrangler deploy
 ```
+
+Le domaine de production est déclaré à deux endroits qui doivent rester en
+phase : `src/lib/site.ts` (métadonnées) et `wrangler.jsonc` (route).

@@ -3,6 +3,9 @@
   "name": "portfolio",
   "main": "worker/index.ts",
   "compatibility_date": "2026-07-17",
+  // Domaine de production — déclaré ici pour que le repo dise où va le site.
+  // Doit rester en phase avec src/lib/site.ts.
+  "routes": [{ "pattern": "flo-gou.com", "custom_domain": true }],
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",
